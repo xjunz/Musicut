@@ -4,6 +4,7 @@ import android.view.*;
 import android.widget.*;
 import meta.z.musicut.*;
 
+//自定义View的Toast
 public class MusicutToast extends Toast
 {
 	private Context context;

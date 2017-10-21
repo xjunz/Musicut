@@ -49,7 +49,7 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 			{   //有权限加载界面
 				afterPermissionGranted();
 			}
-			throw  new Exception();
+			
 		}
 		catch (Exception e)
 		{
