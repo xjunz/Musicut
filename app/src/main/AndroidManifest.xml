@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="meta.z.musicut" >
+
+    <application
+		android:name=".MusicutApplication"
+        android:allowBackup="true"
+		android:label="@string/app_name"	
+        android:icon="@mipmap/ic_launcher"
+        >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+			android:theme="@style/Musicut.Main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+	     </intent-filter>
+        </activity>
+		
+		<activity
+			android:label="@string/app_name"
+            android:name=".MusicPlayerActivity"
+			android:theme="@style/Musicut.MusicPlayer">
+			<intent-filter>
+			<action
+				android:name="android.intent.action.VIEW" />
+			<category
+				android:name="android.intent.category.DEFAULT" />
+			<data android:scheme="file"/>
+			<data android:mimeType="audio/mp3"/>
+			</intent-filter>
+	   </activity>
+	   <activity
+		   android:name=".Oops"
+		   android:theme="@style/Musicut.Main"
+		   />
+    </application>
+
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+</manifest>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!--application-->
+	<style name="Musicut" parent="@android:style/Theme.Material.Light.NoActionBar">
+		<item name="android:windowTranslucentNavigation">true</item>
+		<item name="android:statusBarColor">@color/darken</item>
+		<!--<item name="android:interpolator">@android:interpolator/fast_out_slow_in</item>
+		-->
+		<item name="android:colorAccent">@color/pink</item>
+		<item name="android:colorControlHighlight">@color/quater_pink</item>
+		<item name="android:colorEdgeEffect">?android:colorControlHighlight</item>
+	    <!--<item name="android:colorPrimary">#263238</item>-->
+		<item name="android:navigationBarColor">?android:attr/colorAccent</item>
+		<item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
+	</style>
+
+	<style name="Musicut.Main">
+		<item name="android:actionOverflowMenuStyle">@style/ToolbarPopupStyle</item>
+	</style>
+
+	<style name="Musicut.MusicPlayer">
+		<item name="android:windowSharedElementEnterTransition">@transition/music_player_shared_enter</item>
+		<item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+	    <item name="android:windowBackground">@color/scrim</item>
+	</style>
+
+	<!--toolbar-->
+	<style name="ToolbarStyle" parent="@android:style/Widget.Toolbar">
+		<!--<item name="android:theme">@android:style/ThemeOverlay.Material.Dark</item>-->
+		<item name="android:fitsSystemWindows">true</item>
+		<item name="android:titleTextAppearance">@style/ToolbarTitleTextAppearance</item>
+		<item name="android:elevation">@dimen/z_toolbar</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_width">match_parent</item>
+	</style>
+
+	<style name="ToolbarPopupStyle" parent="@android:style/Widget.DeviceDefault.PopupMenu">
+		<item name="android:overlapAnchor">true</item>
+		<item name="android:dropDownHorizontalOffset">@dimen/drop_down_offset</item>
+		<item name="android:popupElevation">@dimen/z_popup</item>
+	</style>
+
+	<style name="ToolbarTitleTextAppearance" parent="@android:style/Widget.TextView">
+		<item name="android:typeface">monospace</item>
+		<item name="android:letterSpacing">@dimen/letter_spacing_toolbar_title</item>
+		<item name="android:textSize">@dimen/sp_large</item>
+	</style>
+
+	<!--FAB-->
+	<style name="FAB">
+		<item name="android:stateListAnimator">@animator/raise_btn</item>
+		<item name="android:background">@drawable/bck_fab</item>
+		<item name="android:elevation">@dimen/z_fab</item>
+	</style>
+	
+	<style name="FAB.Mini">
+		<item name="android:layout_width">@dimen/d_fab_mini</item>
+		<item name="android:layout_height">@dimen/d_fab_mini</item>
+	</style>
+	
+	<style name="FAB.Normal">
+		<item name="android:layout_width">@dimen/d_fab_normal</item>
+		<item name="android:layout_height">@dimen/d_fab_normal</item>
+	</style>
+	
+	<style name="FAB.Large">
+		<item name="android:layout_width">@dimen/d_fab_large</item>
+		<item name="android:layout_height">@dimen/d_fab_large</item>
+	</style>
+	<!--textview-->
+	<style name="FilterOptionTextViewAppearance" parent="@android:style/Widget.TextView">
+		<!--<item name="android:theme">@android:style/ThemeOverlay.Material.Dark</item>-->
+		<item name="android:textSize">@dimen/sp_small</item>
+		<item name="android:letterSpacing">@dimen/letter_spacing_small</item>
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:layout_marginLeft">@dimen/margin_large</item>
+	</style>
+
+	<!--spinner-->
+	<style name="FilterSpinnerStyle">
+		<!--<item name="android:theme">@android:style/ThemeOverlay.Material.Dark</item>-->
+		<item name="android:layout_marginLeft">@dimen/margin_large</item>
+		<item name="android:layout_marginRight">@dimen/margin_large</item>
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+
+</resources>

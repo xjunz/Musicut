@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<meta.z.musicut.widget.ForegroundLinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:elevation="@dimen/z_item_song"
+	android:orientation="vertical"
+	android:stateListAnimator="@animator/raise_activated"
+	android:foreground="?android:selectableItemBackground"
+	android:background="?android:colorBackground"
+	android:descendantFocusability="blocksDescendants"
+>
+    <RelativeLayout
+		android:transitionName="transition_dialog"
+		android:id="@+id/rl_main"
+		android:visibility="gone"
+		android:layout_alignParentTop="true"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+	>
+		<meta.z.musicut.widget.CircularImageView
+			android:transitionName="transition_album_art"
+			android:id="@+id/item_song_civ_album_art"
+			android:layout_margin="@dimen/margin_normal"
+			android:layout_height="@dimen/d_album_image"
+			android:layout_width="@dimen/d_album_image"
+			android:layout_centerVertical="true"/>
+
+		<ImageButton
+			android:id="@+id/ib_edit"
+			android:onClick="onClick"
+			android:layout_alignParentEnd="true"
+			android:layout_centerVertical="true"
+			android:layout_marginRight="@dimen/margin_large"
+			android:layout_marginLeft="@dimen/margin_normal"
+			android:scaleType="centerInside"
+			android:background="?android:selectableItemBackgroundBorderless"
+			android:layout_width="@dimen/d_option_image"
+			android:layout_height="@dimen/d_option_image"
+			android:src="@drawable/ic_edit"
+		/>
+		<View
+			android:layout_toRightOf="@id/item_song_civ_album_art"
+			android:id="@+id/item_song_divider"
+			android:layout_height="1px"
+			android:background="?android:attr/dividerVertical"
+			android:layout_width="match_parent"/>-
+
+		<LinearLayout
+			android:layout_toRightOf="@id/item_song_civ_album_art"
+			android:layout_toLeftOf="@id/ib_edit"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:gravity="center_vertical"
+			android:orientation="vertical"
+		>
+			<TextView
+				android:transitionName="transition_song_title"
+				android:id="@+id/tv_song_title"
+				android:layout_marginTop="@dimen/margin_normal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:letterSpacing="@dimen/letter_spacing_normal"
+				android:textSize="@dimen/sp_mid"/>
+
+			<TextView	
+				android:transitionName="transition_song_info"
+				android:id="@+id/tv_song_info"
+				android:layout_marginBottom="@dimen/margin_normal"
+				android:layout_marginTop="@dimen/margin_normal"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:letterSpacing="@dimen/letter_spacing_normal"
+				android:textSize="@dimen/sp_small"/>
+		</LinearLayout>
+		<!--	<View
+
+		android:layout_alignParentBottom="true"
+		android:id="@+id/item_song_divider"
+		android:layout_height="2px"
+		android:background="?android:attr/dividerVertical"
+		android:layout_width="match_parent"/>
+		-->
+	</RelativeLayout>
+
+
+    <RelativeLayout
+		android:layout_below="@id/rl_main"
+		android:id="@+id/rl_option_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+		android:visibility="gone"
+	>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+		/>
+
+		<Button
+			android:id="@+id/item_song_btn_cut"
+			android:layout_alignParentEnd="true"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/cut"
+		/>
+		<Button
+			android:layout_toLeftOf="@id/item_song_btn_cut"
+			android:id="@+id/item_song_btn_play"
+			style="?android:attr/buttonBarButtonStyle"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/play"
+		/>
+	</RelativeLayout>
+
+</meta.z.musicut.widget.ForegroundLinearLayout>
+

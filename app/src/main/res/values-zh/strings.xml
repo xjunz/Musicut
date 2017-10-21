@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">音乐剪切</string>
+    <string name="app_name_en">Musicut</string>
+	<string name="artist">艺术家</string>
+	<string name="album">专辑</string>
+	<string name="duration">时长</string>
+	<string name="date_added">添加日期</string>
+	<string name="dir">目录</string>
+	<string name="size">体积</string>
+	<string name="sort">排序</string>
+	<string name="song_deleted">已删除</string>
+	<string name="undo_successfully">撤销成功</string>
+	<string name="undo">撤销</string>
+	<string name="cut">剪切</string>
+	<string name="delete">删除</string>
+	<string name="play">播放</string>
+	<string name="song_not_exists">抱歉! 这首音乐不存在</string>
+</resources>

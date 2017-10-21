@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+   <item
+        android:id="@+id/item_setting"
+        android:title="Item"
+		android:showAsAction="never"/>
+	
+	<item
+        android:id="@+id/item_about"
+        android:title="Item"
+		android:showAsAction="never"/>
+  
+</menu>

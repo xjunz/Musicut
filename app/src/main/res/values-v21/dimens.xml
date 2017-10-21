@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<resources>
+		<dimen name="h_status_bar">25dp</dimen>
+		<dimen name="z_toolbar">4dp</dimen>
+		<dimen name="z_filter">3dp</dimen>
+		<dimen name="z_popup">5dp</dimen>
+		<dimen name="drop_down_offset">-8dp</dimen>
+		<dimen name="margin_small">4dp</dimen>
+		<dimen name="margin_normal">8dp</dimen>
+		<dimen name="margin_large">16dp</dimen>
+		<dimen name="sp_small">13sp</dimen>
+		<dimen name="sp_mid">14dp</dimen>
+		<dimen name="sp_large">18sp</dimen>
+		<dimen name="sp_xlarge">23sp</dimen>
+		<dimen name="h_chevron_down">20dp</dimen>
+		<dimen name="d_album_image">36dp</dimen>
+		<dimen name="r_album_image">18dp</dimen>
+		<dimen name="d_music_player_album_image">50dp</dimen>
+		<dimen name="d_toast_icon">40dp</dimen>
+		<dimen name="z_item_song">1dp</dimen>
+		<dimen name="z_raise">3dp</dimen>
+		<dimen name="z_activated">1dp</dimen>
+		<dimen name="d_option_image">25dp</dimen>
+		<dimen name="d_fab_large">56dp</dimen>
+		<dimen name="d_fab_normal">48dp</dimen>
+		<dimen name="d_fab_mini">40dp</dimen>
+		<dimen name="z_fab">6dp</dimen>
+		<dimen name="z_toast">2px</dimen>
+		<dimen name="z_dialog">10dp</dimen>
+		<dimen name="r_dialog_corners">3dp</dimen>
+		<item name="letter_spacing_toolbar_title" type="dimen">.50</item>
+		<item name="letter_spacing_small" type="dimen">.10</item>
+		<item name="letter_spacing_normal" type="dimen">.15</item>
+		<item name="duration_rapid" type="dimen">100</item>
+	</resources>
+		
+		
+		

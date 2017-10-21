@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<resources>
+		<color name="pink">#fff06292</color>
+		<color name="quater_pink">#44f06292</color>
+		<color name="darken">#50000000</color>
+		<color name="scrim">#99323232</color>
+		<color name="light_grey">#F5F5F5</color>
+	</resources>

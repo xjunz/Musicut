@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Musicut</string>
+    <string name="app_name_en">Musicut</string>
+	<string name="artist">Artist</string>
+	<string name="album">Album</string>
+	<string name="duration">Duration</string>
+	<string name="date_added">Date added</string>
+	<string name="dir">Directory</string>
+	<string name="size">Size</string>
+	<string name="sort">Sort</string>
+	<string name="song_deleted">This song has been deleted</string>
+	<string name="undo_successfully">Undo successfully</string>
+	<string name="undo">undo</string>
+	<string name="delete">delete</string>
+	<string name="cut">cut</string>
+	<string name="play">play</string>
+	<string name="song_not_exists">Oops! This song doesn\'t exist somehow</string>
+</resources>

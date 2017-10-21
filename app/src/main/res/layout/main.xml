@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<meta.z.musicut.widget.CurtainPanel
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:clickable="true"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+	
+	<android.support.v7.widget.RecyclerView
+		android:background="@color/light_grey"
+		android:layout_below="@+id/toolbar"
+		android:layout_marginTop="@dimen/margin_large"
+	    android:id="@+id/rvMusic"
+		android:animateLayoutChanges="false"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"/>
+	<View
+		android:id="@+id/scrim"
+		android:visibility="gone"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:background="@color/scrim"
+		android:onClick="onClick"
+		/>
+	
+	<RelativeLayout
+		android:paddingTop="@dimen/margin_large"
+		android:clipToPadding="false"
+		android:background="?android:colorPrimary"
+		android:id="@+id/rl_filter"
+		android:clickable="true"
+        android:layout_below="@+id/toolbar"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:elevation="@dimen/z_toolbar">
+	<include
+			layout="@layout/layout_filter"/>
+	</RelativeLayout>
+	<ImageButton
+		style="@style/FAB.Mini"
+		android:id="@+id/fab_filter"
+		android:onClick="onClick"
+		android:layout_below="@id/toolbar"
+		android:layout_marginTop="-4dp"
+		android:layout_alignParentRight="true"
+		android:layout_marginRight="40dp"
+		android:scaleType="centerInside"
+		android:src="@mipmap/ic_filter_variant"
+		/>
+	
+	<Toolbar
+		android:id="@id/toolbar"
+		android:title="@string/app_name_en"
+		style="@style/ToolbarStyle"
+		android:background="?android:colorPrimary">
+	</Toolbar>
+	</meta.z.musicut.widget.CurtainPanel>
+

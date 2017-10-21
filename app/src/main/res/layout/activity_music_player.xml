@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<RelativeLayout
+		android:transitionName="transition_dialog"
+		android:id="@+id/activity_music_player_rl_dialog"
+		android:padding="@dimen/margin_large"
+		android:elevation="@dimen/z_dialog"
+		android:background="@drawable/bck_dialog"
+		android:layout_gravity="center"
+		android:layout_marginRight="@dimen/margin_large"
+		android:layout_marginLeft="@dimen/margin_large"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content">
+
+		<TextView
+			android:transitionName="transition_song_title"
+			android:letterSpacing="@dimen/letter_spacing_normal"
+			android:padding="@dimen/margin_normal"
+			android:id="@+id/activity_music_player_tv_title"
+			android:textSize="@dimen/sp_xlarge"
+			android:text="迁就"
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"/>
+
+		<meta.z.musicut.widget.CircularImageView
+			android:transitionName="transition_album_art"
+			android:elevation="@dimen/z_fab"
+			android:id="@+id/activity_music_player_civ_album_art"
+			android:layout_below="@id/activity_music_player_tv_title"
+			android:layout_margin="@dimen/margin_normal"
+			android:layout_height="@dimen/d_music_player_album_image"
+			android:layout_width="@dimen/d_music_player_album_image"
+			android:layout_centerVertical="true"
+			android:layout_centerHorizontal="true"/>
+
+		<SeekBar
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:layout_below="@id/activity_music_player_civ_album_art"
+			android:id="@+id/activity_music_player_seekbar"/>
+
+		<TextView
+			android:layout_margin="@dimen/margin_normal"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceSmall"
+			android:layout_width="wrap_content"
+			android:text="0:00"
+			android:layout_below="@id/activity_music_player_seekbar"
+			android:id="@+id/activity_music_player_tv_start"/>
+
+		<TextView
+			android:layout_margin="@dimen/margin_normal"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceSmall"
+			android:layout_width="wrap_content"
+			android:text="4:35"
+			android:layout_below="@id/activity_music_player_seekbar"
+			android:layout_alignRight="@id/activity_music_player_seekbar"
+			android:id="@+id/activity_music_player_tv_end"/>
+
+		<LinearLayout
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:layout_below="@id/activity_music_player_tv_start"
+			android:layout_centerHorizontal="true"
+			android:gravity="center">
+
+			<ImageButton
+				android:scaleType="centerInside"
+				android:onClick="onClick"
+				android:src="@mipmap/ic_skip_previous"
+				android:id="@+id/activity_music_player_ib_pre"
+				style="@style/FAB.Mini"
+				android:layout_marginLeft="@dimen/margin_normal"/>
+
+			<ImageButton
+				android:scaleType="centerInside"
+				android:onClick="onClick"
+				android:src="@mipmap/ic_play"
+				android:id="@+id/activity_music_player_ib_play"
+				style="@style/FAB.Normal"
+				android:layout_margin="@dimen/margin_large"/>
+
+			<ImageButton
+				android:scaleType="centerInside"
+				android:onClick="onClick"
+				android:src="@mipmap/ic_skip_next"
+				android:id="@+id/activity_music_player_ib_next"
+				style="@style/FAB.Mini"
+				android:layout_marginRight="@dimen/margin_normal"/>
+		</LinearLayout>
+
+		<TextView
+			android:transitionName="transition_song_info"
+			android:id="@+id/activity_music_player_tv_artist"
+			android:layout_margin="@dimen/margin_normal"
+			android:layout_height="wrap_content"
+			android:textAppearance="?android:attr/textAppearanceSmall"
+			android:layout_width="wrap_content"
+			android:text="星弟"
+			android:letterSpacing="@dimen/letter_spacing_normal"
+			android:layout_below="@id/activity_music_player_seekbar"
+			android:layout_centerHorizontal="true"/>
+
+	</RelativeLayout>
+
+</FrameLayout>
+
