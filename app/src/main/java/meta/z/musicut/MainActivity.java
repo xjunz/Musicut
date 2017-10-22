@@ -15,6 +15,8 @@ import meta.z.musicut.adapter.*;
 import meta.z.musicut.manager.*;
 import meta.z.musicut.widget.*;
 import meta.z.musicut.util.*;
+import java.util.*;
+import android.widget.AdapterView.*;
 
 public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlideListener
 {
@@ -29,7 +31,7 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 
 	private final int PERMISSION_REQUEST_CODE=0;
 	
-	//软件入口
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -46,7 +48,7 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 												  PERMISSION_REQUEST_CODE);
 			}
 			else
-			{   //有权限加载界面
+			{   //有权限则加载界面
 				afterPermissionGranted();
 			}
 			
@@ -54,6 +56,7 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 		catch (Exception e)
 		{
 			FeedbackUtils.showExceptionCaughtDialog(this, e);
+			
 		}
 
 
@@ -96,7 +99,7 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 		//APP升级提示
 		if (SharedPrefsManager.needNotifyUpdate())
 		{
-			MusicutToast.makeAndShow(this, "APP已升级");
+			MusicutToast.makeAndShow(this, R.string.app_upgraded);
 		}
 
 		
@@ -112,7 +115,7 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 		toolbar = (Toolbar)findViewById(R.id.toolbar);
 	    setActionBar(toolbar);
 		scrim = findViewById(R.id.scrim);
-		
+		setAdapterForSpinners();
 	}
 
 	@Override
@@ -182,16 +185,16 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
         {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
             {
-				MusicutToast.makeAndShow(this, "授权成功");
+				MusicutToast.makeAndShow(this, R.string.permission_granted);
 				afterPermissionGranted();
             }
 			else
             {
                 //用户拒绝授权，弹窗提示
 				AlertDialog.Builder builder=new AlertDialog.Builder(this);
-				builder.setTitle("授权失败")
-					.setMessage("请授予该应用权限，否则无法运行。放心，我们不会使用该权限危害您的设备或窃取您的隐私。")
-					.setPositiveButton("设置", new DialogInterface.OnClickListener(){
+				builder.setTitle(R.string.permission_not_granted)
+					.setMessage(R.string.notif_permission_not_granted)
+					.setPositiveButton(R.string.settings, new DialogInterface.OnClickListener(){
 
 						@Override
 						public void onClick(DialogInterface p1, int p2)
@@ -204,10 +207,10 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 							i.setData(Uri.parse("package:" + getPackageName()));
 							startActivity(i);
 							reenter_from_settings = true;
-							MusicutToast.makeAndShow(MainActivity.this, "请在「设置-->权限管理」中给予该应用权限");
+							MusicutToast.makeAndShow(MainActivity.this, R.string.tip_permission);
 						}
 					})
-					.setNegativeButton("退出", new DialogInterface.OnClickListener(){
+					.setNegativeButton(R.string.exit, new DialogInterface.OnClickListener(){
 
 						@Override
 						public void onClick(DialogInterface p1, int p2)
@@ -238,8 +241,8 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 			if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
 				== PackageManager.PERMISSION_DENIED)
 			{
-				//我们不再自作多情。（︶︿︶）=凸，直接退出应用
-				MusicutToast.makeAndShow(this, "授权失败，无法运行此应用");
+				//直接退出应用
+				MusicutToast.makeAndShow(this, R.string.warn_permisson_not_granted);
 				finish();
 			}
 			else
@@ -267,6 +270,49 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 				break;
 		}
 	}
+	
+	private Spinner[] spinners=new Spinner[6];
+	private Spinner spSort,spOrder;
+	private CharSequence[] defPropmt=new String[8];
+	
+	private void  setAdapterForSpinners(){
+		int[] spinnerPoses=new int[]{2,4,6,8,10,12};
+		int[] orders=new int[]{SongManager.ORDER_ARTIST,SongManager.ORDER_ALBUM,
+		SongManager.ORDER_DURATION,SongManager.ORDER_TITLE,SongManager.ORDER_PATH,SongManager.ORDER_DATE};
+		for(int i=0;i<spinnerPoses.length;i++){
+			Spinner sp= (Spinner) rlFilter.getChildAt(spinnerPoses[i]);
+			spinners[i]=sp;
+			ArrayList<String> strs=SongManager.getGroupDescriptions(orders[i]);
+			strs.add(0,getString(R.string.all));
+			ArrayAdapter adp=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,strs);
+		    sp.setAdapter(adp);
+			defPropmt[i]=sp.getPrompt();
+		}
+		 spSort=(Spinner) rlFilter.getChildAt(15);
+		spSort.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,
+		new String[]{
+		 getString(R.string.title), getString(R.string.artist),getString(R.string.album)
+		,getString(R.string.duration),getString(R.string.dir)
+		,getString(R.string.date_added)}));
+		
+		 spOrder=(Spinner) rlFilter.getChildAt(17);
+		spOrder.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,
+		new String[]{getString(R.string.order_ascending),getString(R.string.order_descending)}));
+		spSort.setOnItemSelectedListener(new OnItemSelectedListener(){
+				@Override
+				public void onItemSelected(AdapterView<?> p1, View p2, int p3, long p4)
+				{
+					
+				}
+
+				@Override
+				public void onNothingSelected(AdapterView<?> p1)
+				{
+					
+				}
+			});
+	}
 
 
-}
+	
+};

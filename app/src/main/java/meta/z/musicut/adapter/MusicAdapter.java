@@ -4,8 +4,8 @@ import android.content.*;
 import android.graphics.*;
 import android.os.*;
 import android.support.v7.widget.*;
-import android.support.v7.widget.helper.*;
 import android.transition.*;
+import android.util.*;
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
@@ -15,35 +15,36 @@ import meta.z.musicut.bean.*;
 import meta.z.musicut.manager.*;
 import meta.z.musicut.util.*;
 import meta.z.musicut.widget.*;
-import android.util.*;
 
 public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHolder> implements SongManager.GroupDescriptor
 {
 	private Context context;
-	public static final int TYPE_ITEM_SONG=0;
-	public static final int TYPE_ITEM_HEADER=1;
 	private ArrayList<ItemInfo> itemInfoList;
 	private RecyclerView rvMusic;
 	private Transition transition=new ChangeBounds();
 	private SimultaneousAnimator animator=new SimultaneousAnimator();
     private class ItemInfo
-	{
+	{   
+	    public static final int TYPE_ITEM_SONG=0;
+		public static final int TYPE_ITEM_HEADER=1;
+		
 		Song song;
 		String description;
 		boolean expand;
 		boolean collapz;
 		int type;
-		ItemInfo(Song s, String d, int t)
-		{   song = s;
-			description = d;
-			type = t;
+		ItemInfo(Song song, String des, int type)
+		{   this.song = song;
+			this.description = des;
+			this.type = type;
 		}
-		ItemInfo(String d)
+		ItemInfo(String des)
 		{
-			description = d;
+			this.description = des;
 			type = TYPE_ITEM_HEADER;
 		}
 	}
+	
 	private OnTouchListener touchEater=new OnTouchListener(){
 		@Override
 		public boolean onTouch(View p1, MotionEvent p2)
@@ -79,7 +80,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 
 
 	@Override
-	public void onDescribe(Song song,String des)
+	public void onDescribe(Song song, String des)
 	{
 		if (song.postion == 0)
 		{
@@ -93,10 +94,10 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 			}
 		}
 
-		itemInfoList.add(new ItemInfo(SongManager.cur_song_list.get(song.postion), des, TYPE_ITEM_SONG));
-		
-	}
+		itemInfoList.add(new ItemInfo(SongManager.cur_song_list.get(song.postion), des, ItemInfo.TYPE_ITEM_SONG));
 
+	}
+	
 	@Override
 	public int getItemViewType(int position)
 	{
@@ -107,7 +108,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 	@Override
 	public MusicAdapter.MusicViewHolder onCreateViewHolder(ViewGroup p1, int p2)
 	{
-		if (p2 == TYPE_ITEM_SONG)
+		if (p2 == ItemInfo.TYPE_ITEM_SONG)
 		{
 			return new MusicViewHolder(LayoutInflater.from(context).inflate(R.layout.item_song, p1, false), p2);
 		}
@@ -146,7 +147,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 	{ final ItemInfo itemInfo=itemInfoList.get(p2);
 		switch (getItemViewType(p2))
 		{
-			case TYPE_ITEM_SONG:
+			case ItemInfo.TYPE_ITEM_SONG:
 				final Song song=itemInfo.song;
 				if (itemInfo.collapz)
 				{
@@ -187,7 +188,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 				}
 				break;
 
-			case TYPE_ITEM_HEADER:
+			case ItemInfo.TYPE_ITEM_HEADER:
 				p1.tvHeader.setText(itemInfo.description);
 
 				if (itemInfo.collapz)
@@ -232,7 +233,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 			super(item);
 			final MusicViewHolder viewHolder=MusicViewHolder.this;
 
-			if (itemType == TYPE_ITEM_SONG)
+			if (itemType == ItemInfo.TYPE_ITEM_SONG)
 			{
 				tvSongTitle = (TextView) item.findViewById(R.id.tv_song_title);
 				tvSongInfo = (TextView) item.findViewById(R.id.tv_song_info);
@@ -248,7 +249,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 						@Override
 						public void onClick(View p1)
 						{
-							
+
 						}
 					});
 
@@ -308,7 +309,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 							{
 								itemInfoList.get(i).collapz = true;
 								viewHolder.ivChevron.animate().rotation(-90).start();
-								for (i = i + 1;i < itemInfoList.size() && itemInfoList.get(i).type == TYPE_ITEM_SONG;i++)
+								for (i = i + 1;i < itemInfoList.size() && itemInfoList.get(i).type == ItemInfo.TYPE_ITEM_SONG;i++)
 								{
 									itemInfoList.get(i).collapz = true;
 									notifyItemChanged(i);
@@ -319,7 +320,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 								itemInfoList.get(i).collapz = false;
 								viewHolder.ivChevron.animate().rotation(0).start();
 								itemInfoList.get(viewHolder.getAdapterPosition()).collapz = false;
-								for (i = i + 1;i < itemInfoList.size() && itemInfoList.get(i).type == TYPE_ITEM_SONG;i++)
+								for (i = i + 1;i < itemInfoList.size() && itemInfoList.get(i).type == ItemInfo.TYPE_ITEM_SONG;i++)
 								{
 									itemInfoList.get(i).collapz = false;
 									notifyItemChanged(i);

@@ -38,13 +38,13 @@ public class CurtainPanel extends RelativeLayout
 
 	private void init()
 	{
-		helper=ViewDragHelper.create(this, 1.0f, callback);
+		helper = ViewDragHelper.create(this, 1.0f, callback);
 		// this.setOnClickListener(this);
 	}
 
 	public void setOnCurtainSlideListener(OnCurtainSlideListener listener)
 	{
-		this.listener=listener;
+		this.listener = listener;
 	}
 
 	private View target;
@@ -53,8 +53,8 @@ public class CurtainPanel extends RelativeLayout
 	protected void onFinishInflate()
 	{
 		super.onFinishInflate();
-		target=findViewById(R.id.rl_filter);
-		margin=((ViewGroup)target).getChildAt(13);
+		target = findViewById(R.id.rl_filter);
+		margin = ((ViewGroup)target).findViewById(R.id.lf_margin);
 	}
 
 	@Override
@@ -72,17 +72,21 @@ public class CurtainPanel extends RelativeLayout
 
 	private int minTop;
 	private int maxTop;
-    	@Override
+
+
+	private int curTop;
+	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b)
 	{
 		super.onLayout(changed, l, t, r, b);
-		maxTop=target.getTop();
-		minTop=maxTop-target.getHeight()+margin.getHeight();
-		target.layout(0, minTop, getRight(), maxTop+margin.getHeight());
-		
+		maxTop = target.getTop();
+		minTop = maxTop - target.getHeight() + margin.getHeight();
+		target.layout(0, minTop+curTop, getRight(), maxTop + margin.getHeight()+curTop);	
 	}
 
-	
+  
+
+
 	@Override
 	public void computeScroll()
 	{
@@ -92,15 +96,15 @@ public class CurtainPanel extends RelativeLayout
 
 	public void closeCurtain()
 	{
-		if (helper.smoothSlideViewTo(target,0, minTop))
+		if (helper.smoothSlideViewTo(target, 0, minTop))
 		{
 	    	ViewCompat.postInvalidateOnAnimation(this);
 		}}
-		
+
 
 	public void autoCurtain()
 	{
-		if (target.getTop()==minTop)
+		if (target.getTop() == minTop)
 		{
 			openCurtain();
 		}
@@ -115,12 +119,12 @@ public class CurtainPanel extends RelativeLayout
 		{
 			ViewCompat.postInvalidateOnAnimation(this);
 		}
-		
+
 	}
 
 	public boolean isCurtainOpen()
 	{
-		return target.getTop()>minTop;
+		return target.getTop() > minTop;
 	}
 
 	private ViewDragHelper.Callback callback=new ViewDragHelper.Callback(){
@@ -128,30 +132,35 @@ public class CurtainPanel extends RelativeLayout
 		@Override
 		public boolean tryCaptureView(View p1, int p2)
 		{
-			return p1.getId()==R.id.rl_filter;
+			return p1.getId() == R.id.rl_filter;
 		}
 
 		@Override
 		public int clampViewPositionVertical(View child, int top, int dy)
 		{   
-			top=(int) MathUtils.constrain(top,minTop,maxTop);
-			return top;
+			return (int) MathUtils.constrain(top, minTop, maxTop);
 		}
 
 		@Override
 		public void onViewPositionChanged(View changedView, int left, int top, int dx, int dy)
-		{   listener.onCurtainSlide(CurtainPanel.this, (float)(top-minTop)/(maxTop-minTop));
-			  if(top==minTop){listener.onCurtainClosed(CurtainPanel.this);}
-			else if(top==maxTop){
+		{  
+		    curTop+=dy;
+			listener.onCurtainSlide(CurtainPanel.this, (float)(top - minTop) / (maxTop - minTop));
+			if (top == minTop)
+			{listener.onCurtainClosed(CurtainPanel.this);
+				
+			}
+			else if (top == maxTop)
+			{
 				listener.onCurtainOpened(CurtainPanel.this);
 			}
-			super.onViewPositionChanged(changedView, left, top, dx, dy);
+			
 		}
-        
+
 		@Override
 		public void onViewReleased(View releasedChild, float xvel, float yvel)
 		{
-		    if (yvel>0)
+		    if (yvel > 0)
 			{
 				openCurtain();
 			}
@@ -166,13 +175,13 @@ public class CurtainPanel extends RelativeLayout
 		@Override
 		public int getViewVerticalDragRange(View child)
 		{
-			return getMeasuredHeight()-child.getMeasuredHeight();
+			return getMeasuredHeight() - child.getMeasuredHeight();
 		}
 
 		@Override
 		public int getViewHorizontalDragRange(View child)
 		{
-			return getMeasuredWidth()-child.getMeasuredWidth();
+			return getMeasuredWidth() - child.getMeasuredWidth();
 		}
 
 	};

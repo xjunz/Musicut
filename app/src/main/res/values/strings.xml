@@ -10,11 +10,24 @@
 	<string name="dir">Directory</string>
 	<string name="size">Size</string>
 	<string name="sort">Sort</string>
-	<string name="song_deleted">This song has been deleted</string>
-	<string name="undo_successfully">Undo successfully</string>
+	<string name="order">Order</string>
+	<string name="title">Title</string>
+	<string name="song_deleted">This song has been deleted.</string>
+	<string name="undo_successfully">Undo successfully.</string>
 	<string name="undo">undo</string>
 	<string name="delete">delete</string>
 	<string name="cut">cut</string>
 	<string name="play">play</string>
 	<string name="song_not_exists">Oops! This song doesn\'t exist somehow</string>
+	<string name="app_upgraded">App upgraded!</string>
+	<string name="permission_granted">Permission is granted</string>
+	<string name="permission_not_granted">Permission is denied</string>
+	<string name="notif_permission_not_granted">Sorry,without permission granted,this app can\'t run on your device.The permission is assured of not being abused.</string>
+	<string name="warn_permisson_not_granted">Sorry,permission requset is refused.</string>
+	<string name="tip_permission">Please grant the permission in 「Permission Manager」.</string>
+	<string name="settings">settings</string>
+	<string name="exit">exit</string>
+	<string name="order_ascending">Ascending order</string>
+	<string name="order_descending">Descending order</string>
+	<string name="all">All</string>
 </resources>

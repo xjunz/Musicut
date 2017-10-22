@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">音乐剪切</string>
     <string name="app_name_en">Musicut</string>
 	<string name="artist">艺术家</string>
@@ -10,6 +9,8 @@
 	<string name="dir">目录</string>
 	<string name="size">体积</string>
 	<string name="sort">排序</string>
+	<string name="order">顺序</string>
+	<string name="title">歌名</string>
 	<string name="song_deleted">已删除</string>
 	<string name="undo_successfully">撤销成功</string>
 	<string name="undo">撤销</string>
@@ -17,4 +18,15 @@
 	<string name="delete">删除</string>
 	<string name="play">播放</string>
 	<string name="song_not_exists">抱歉! 这首音乐不存在</string>
+	<string name="app_upgraded">应用已升级</string>
+	<string name="permission_granted">授权成功</string>
+	<string name="permission_not_granted">授权失败</string>
+	<string name="notif_permission_not_granted">请授予该应用必要的权限，否则它将无法运行。我们不会使用该权限危害您的设备或窃取您的隐私。</string>
+	<string name="tip_permission">请在「权限管理」中给予该应用权限</string>
+	<string name="warn_permisson_not_granted">授权失败，无法运行此应用</string>
+	<string name="settings">设置</string>
+	<string name="exit">退出</string>
+	<string name="order_ascending">升序</string>
+	<string name="order_descending">降序</string>
+	<string name="all">全部</string>
 </resources>

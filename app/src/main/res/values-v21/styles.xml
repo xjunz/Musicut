@@ -85,6 +85,7 @@
 
 	<!--spinner-->
 	<style name="FilterSpinnerStyle">
+		<item name="android:popupElevation">@dimen/z_popup</item>
 		<!--<item name="android:theme">@android:style/ThemeOverlay.Material.Dark</item>-->
 		<item name="android:layout_marginLeft">@dimen/margin_large</item>
 		<item name="android:layout_marginRight">@dimen/margin_large</item>

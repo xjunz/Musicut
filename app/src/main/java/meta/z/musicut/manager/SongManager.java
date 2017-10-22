@@ -15,7 +15,6 @@ public class SongManager
 	public static final int ORDER_DATE=2;
 	public static final int ORDER_DURATION=3;
 	public static final int ORDER_PATH=4;
-	public static final int ORDER_SIZE=5;
 	public static final int ORDER_TITLE=6;
 	public static  int current_order;
 	private static GroupDescriptor descriptor=new GroupDescriptor(){
@@ -74,18 +73,19 @@ public class SongManager
 				{
 					Song song=cur_song_list.get(i);
 					song.postion=i;
-					descriptor.onDescribe(song,getDescription(song));
+					descriptor.onDescribe(song,getDescription(song,current_order));
 			  }
 		
 	}
 	
 	//获取分组描述
-	private static String getDescription(Song song){
-		switch(current_order){
+	private static String getDescription(Song song,int order){
+		switch(order){
 			case ORDER_PATH:
-				return song.path;
+				int index=song.path.lastIndexOf("/");
+				return song.path.substring(0,index);
 			case ORDER_TITLE:
-				return song.path;
+				return song.title.substring(0,1);
 			case ORDER_ARTIST:
 				return song.artist;
 			case ORDER_DURATION:
@@ -96,20 +96,22 @@ public class SongManager
 				return song.album;
 			case ORDER_DATE:
 				return song.date_added;
-			case ORDER_SIZE:
-				 int size=(int) song.size / 1024 / 1024;
-				return size + "M-" + (size + 1) + "M";
-		}
+			}
 		return "";
 	}
 	
 	
-	public static String[] getGroupDescriptionFor(int order){
+	public static ArrayList<String> getGroupDescriptions(int order){
 		ArrayList<String> list=new ArrayList<String>();
-		for(Song song:cur_song_list){
-			
+		for(Song song:local_song_list){
+			String des=getDescription(song,order);
+			if(!list.contains(getDescription(song,order))){
+				list.add(des);
+			}
 		}
-		return null;
+
+		Collections.sort(list);
+		return list;
 	}
 
 	
@@ -147,8 +149,6 @@ public class SongManager
 					return (int)(p1.duration-p2.duration);
 				case ORDER_PATH:
 					return p1.path.compareToIgnoreCase(p2.path);
-				case ORDER_SIZE:
-					return (int)(p1.size-p2.size);
 				case ORDER_TITLE:
 					return 0;
 			}

@@ -6,7 +6,6 @@
 	android:layout_height="match_parent">
 	
 	<android.support.v7.widget.RecyclerView
-		android:background="@color/light_grey"
 		android:layout_below="@+id/toolbar"
 		android:layout_marginTop="@dimen/margin_large"
 	    android:id="@+id/rvMusic"
@@ -24,17 +23,17 @@
 	
 	<RelativeLayout
 		android:paddingTop="@dimen/margin_large"
-		android:clipToPadding="false"
 		android:background="?android:colorPrimary"
 		android:id="@+id/rl_filter"
+		android:layout_below="@id/toolbar"
 		android:clickable="true"
-        android:layout_below="@+id/toolbar"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:elevation="@dimen/z_toolbar">
 	<include
 			layout="@layout/layout_filter"/>
 	</RelativeLayout>
+	
 	<ImageButton
 		style="@style/FAB.Mini"
 		android:id="@+id/fab_filter"
