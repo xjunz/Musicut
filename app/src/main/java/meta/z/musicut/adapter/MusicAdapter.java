@@ -77,9 +77,11 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 	}
 
 
-	private void addItemInfoToList(int sortPos, String des)
-	{   
-		if (sortPos == 0)
+
+	@Override
+	public void onDescribe(Song song,String des)
+	{
+		if (song.postion == 0)
 		{
 			itemInfoList.add(new ItemInfo(des));
 		}
@@ -91,42 +93,8 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 			}
 		}
 
-		itemInfoList.add(new ItemInfo(SongManager.cur_song_list.get(sortPos), des, TYPE_ITEM_SONG));
-	}
-
-
-	@Override
-	public void describe(int sortPos)
-	{
-		Song cur=SongManager.cur_song_list.get(sortPos);
-		switch (SongManager.current_order)
-		{
-			case SongManager.ORDER_ALBUM:
-				addItemInfoToList(sortPos, cur.album);
-				break;
-			case SongManager.ORDER_ARTIST:
-                addItemInfoToList(sortPos, cur.artist);
-				break;
-			case SongManager.ORDER_DATE:
-				addItemInfoToList(sortPos, cur.date_added);
-				break;
-			case SongManager.ORDER_DURATION:
-			    int min=(int) cur.duration / 60000;
-				boolean tail=(cur.duration / 60000) % 1 < .5;
-				addItemInfoToList(sortPos, min + ":" + (tail ?"00": "30") + "-" + (tail ?min: min + 1) + ":" + (tail ?"30": "00"));
-				break;
-			case SongManager.ORDER_PATH:
-				addItemInfoToList(sortPos, cur.path.substring(0, cur.path.lastIndexOf("/") + 1));
-				break;
-			case SongManager.ORDER_SIZE:
-				int size=(int) cur.size / 1024 / 1024;
-				addItemInfoToList(sortPos, size + "M-" + (size + 1) + "M");
-				break;
-			case SongManager.ORDER_TITLE:
-				addItemInfoToList(sortPos, cur.title.substring(0, 1).toUpperCase());
-				break;
-		}
-
+		itemInfoList.add(new ItemInfo(SongManager.cur_song_list.get(song.postion), des, TYPE_ITEM_SONG));
+		
 	}
 
 	@Override

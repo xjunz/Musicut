@@ -120,7 +120,7 @@ public class SnackBar
 					container.setAlpha(1 - abs(container.getTranslationX()) / w);
 				}
 			});
-		animator.addListener(new AnimatorUtils.AnimatorListenerAdapter(){
+		animator.addListener(new AnimatorListenerAdapter(){
 				@Override
 				public void onAnimationEnd(Animator p1)
 				{
@@ -219,7 +219,7 @@ public class SnackBar
 				public void run()
 				{   UiUtils.setTranslationYBy(container, container.getHeight());
 					UiUtils.visible(container);
-					container.animate().translationYBy(-container.getHeight()).setListener(new AnimatorUtils.AnimatorListenerAdapter(){
+					container.animate().translationYBy(-container.getHeight()).setListener(new AnimatorListenerAdapter(){
 							@Override
 							public void onAnimationEnd(Animator p1)
 							{
@@ -292,7 +292,7 @@ public class SnackBar
 		if (!dismissing)
 		{
 			dismissing = true;
-			container.animate().translationYBy(container.getHeight()).setListener(new AnimatorUtils.AnimatorListenerAdapter(){
+			container.animate().translationYBy(container.getHeight()).setListener(new AnimatorListenerAdapter(){
 					@Override
 					public void onAnimationEnd(Animator p1)
 					{

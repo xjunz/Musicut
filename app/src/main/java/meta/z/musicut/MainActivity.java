@@ -254,9 +254,6 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 	}
 
 
-
-
-
 	//来自main.xml的声明
 	public void onClick(View v)
 	{
@@ -268,7 +265,6 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 			case R.id.fab_filter:		
 				panel.autoCurtain();
 				break;
-
 		}
 	}
 

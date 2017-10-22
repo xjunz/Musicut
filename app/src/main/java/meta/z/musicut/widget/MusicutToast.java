@@ -17,7 +17,7 @@ public class MusicutToast extends Toast
 		.inflate(R.layout.layout_toast,null,false);
 		tvText=(TextView) v.getChildAt(2);
 		this.setView(v);
-		this.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL,0,100);
+		this.setGravity(Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL,0,200);
 		this.setDuration(LENGTH_SHORT);
 	}
 

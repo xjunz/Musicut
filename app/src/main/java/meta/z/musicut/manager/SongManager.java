@@ -20,7 +20,7 @@ public class SongManager
 	public static  int current_order;
 	private static GroupDescriptor descriptor=new GroupDescriptor(){
 		@Override
-		public void describe(int curPos){}
+		public void onDescribe(Song song,String des){}
 	};
 	
 	//查询媒体储存数据库
@@ -59,7 +59,7 @@ public class SongManager
 	public static interface GroupDescriptor{
 		//根据排序依据进行分组描述
 		//比如以字典顺序排序，则以「S」开头的歌曲为一组并以「S」描述
-		void describe(int curPos);
+		void onDescribe(Song song,String description);
 	}
 	
 	public static void setSongGroupDescriptor(GroupDescriptor d){
@@ -72,12 +72,47 @@ public class SongManager
 	    if (cur_song_list==null||cur_song_list.size()==0){return;}
 				for (int i=0;i<cur_song_list.size();i++)
 				{
-					cur_song_list.get(i).postion=i;
-					descriptor.describe(i);
+					Song song=cur_song_list.get(i);
+					song.postion=i;
+					descriptor.onDescribe(song,getDescription(song));
 			  }
 		
 	}
+	
+	//获取分组描述
+	private static String getDescription(Song song){
+		switch(current_order){
+			case ORDER_PATH:
+				return song.path;
+			case ORDER_TITLE:
+				return song.path;
+			case ORDER_ARTIST:
+				return song.artist;
+			case ORDER_DURATION:
+				int min=(int) song.duration / 60000;
+				boolean tail=(song.duration / 60000) % 1 < .5;
+				return min + ":" + (tail ?"00": "30") + "-" + (tail ?min: min + 1) + ":" + (tail ?"30": "00");
+			case ORDER_ALBUM:
+				return song.album;
+			case ORDER_DATE:
+				return song.date_added;
+			case ORDER_SIZE:
+				 int size=(int) song.size / 1024 / 1024;
+				return size + "M-" + (size + 1) + "M";
+		}
+		return "";
+	}
+	
+	
+	public static String[] getGroupDescriptionFor(int order){
+		ArrayList<String> list=new ArrayList<String>();
+		for(Song song:cur_song_list){
+			
+		}
+		return null;
+	}
 
+	
 	//获取当前列表特定歌曲的下一首歌曲，支持列表循环
 	public static Song getNextSongOf(Song cur){
 		return cur_song_list.get((cur.postion+1)%cur_song_list.size());

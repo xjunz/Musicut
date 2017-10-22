@@ -22,7 +22,6 @@ public class MusicPlayer extends MediaPlayer
 
 	private OnProgressUpdateListener onProgressUpdateListener;
 
-
 	public interface OnProgressUpdateListener
 	{
 		public void onProgress(MusicPlayer player, int progress);
@@ -128,8 +127,6 @@ public class MusicPlayer extends MediaPlayer
 			fadeOutAnimator.end();
 		}
 		super.stop();
-
-
 	}
 
 	private ValueAnimator fadeOutAnimator;
@@ -148,7 +145,7 @@ public class MusicPlayer extends MediaPlayer
 				}
 			});
 
-		fadeOutAnimator.addListener(new AnimatorUtils.AnimatorListenerAdapter(){
+		fadeOutAnimator.addListener(new AnimatorListenerAdapter(){
 				@Override
 				public void onAnimationEnd(Animator p1)
 				{
