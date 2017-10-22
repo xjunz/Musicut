@@ -30,7 +30,7 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 	private MusicAdapter musicAdapter;
 
 	private final int PERMISSION_REQUEST_CODE=0;
-	
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -51,17 +51,17 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 			{   //有权限则加载界面
 				afterPermissionGranted();
 			}
-			
+
 		}
 		catch (Exception e)
 		{
 			FeedbackUtils.showExceptionCaughtDialog(this, e);
-			
+
 		}
 
 
 	}
-	
+
 	//拥有权限后加载界面
 	private void afterPermissionGranted()
 	{
@@ -69,7 +69,7 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 	    this.setContentView(panel);
 		//从媒体储存获取本地歌曲
 		SongManager.scanLocalSongs(this);
-		
+
 		this.panel.setOnCurtainSlideListener(this);
 
 		this.initViews();
@@ -78,31 +78,36 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 		this.rvMusic.setAdapter(musicAdapter);
 
 		this.rvMusic.getItemAnimator().setChangeDuration(200);
+		//当列表下滑时隐藏FAB，防止FAB遮挡文字
 		this.rvMusic.setOnScrollListener(new RecyclerView.OnScrollListener(){
 				public void onScrolled(RecyclerView recyclerView, int dx, int dy)
 				{
-					/*if (!panel.isCurtainOpen())
-					 {
-					 if (dy < 0 && fabFilter.getScaleX() == 1)
-					 {fabFilter.animate().scaleX(0).setInterpolator(new AnticipateInterpolator()).scaleY(0)
-					 .start();
-					 }
-					 else if (dy > 0 && fabFilter.getScaleX() == 0)
-					 {
-					 fabFilter.animate().scaleX(1).setInterpolator(new OvershootInterpolator()).scaleY(1)
-					 .start();	
-					 }
-					 }*/
+					if (!panel.isCurtainOpen())
+					{
+						if (dy < 0 && fabFilter.getScaleX() == 1)
+						{
+							fabFilter.animate().scaleX(0).setInterpolator(new AnticipateInterpolator()).scaleY(0)
+								.start();
+						}
+						else if (dy > 0 && fabFilter.getScaleX() == 0)
+						{
+							fabFilter.setRotation(-90);
+							fabFilter.animate().scaleX(1).setInterpolator(new OvershootInterpolator()).scaleY(1)
+								.rotation(0)
+								.start();	
+						}
+					}
 				}
 			});
 
 		//APP升级提示
 		if (SharedPrefsManager.needNotifyUpdate())
+
 		{
 			MusicutToast.makeAndShow(this, R.string.app_upgraded);
 		}
 
-		
+
 	}
 
 	//初始化控件
@@ -115,7 +120,7 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 		toolbar = (Toolbar)findViewById(R.id.toolbar);
 	    setActionBar(toolbar);
 		scrim = findViewById(R.id.scrim);
-		setAdapterForSpinners();
+		initSpinners();
 	}
 
 	@Override
@@ -146,7 +151,8 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 
 	@Override
 	public void onCurtainOpened(CurtainPanel curtain)
-	{   if (fabFilter.getScaleX() < 1)
+	{  
+		if (fabFilter.getScaleX() < 1)
 		{
 			fabFilter.animate()
 				.scaleX(1)
@@ -154,12 +160,14 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 				.scaleY(1)
 				.start();
 		}
+		AnimUtils.windmillTrick(fabFilter, R.mipmap.ic_check, 360);
 	}
 
 	@Override
 	public void onCurtainClosed(CurtainPanel curtain)
 	{
 		scrim.setVisibility(8);
+		AnimUtils.windmillTrick(fabFilter, R.mipmap.ic_filter_variant, 0);
 	}
 
 	@Override
@@ -270,49 +278,51 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 				break;
 		}
 	}
-	
+
 	private Spinner[] spinners=new Spinner[6];
 	private Spinner spSort,spOrder;
 	private CharSequence[] defPropmt=new String[8];
-	
-	private void  setAdapterForSpinners(){
+
+	private void  initSpinners()
+	{
 		int[] spinnerPoses=new int[]{2,4,6,8,10,12};
 		int[] orders=new int[]{SongManager.ORDER_ARTIST,SongManager.ORDER_ALBUM,
-		SongManager.ORDER_DURATION,SongManager.ORDER_TITLE,SongManager.ORDER_PATH,SongManager.ORDER_DATE};
-		for(int i=0;i<spinnerPoses.length;i++){
+			SongManager.ORDER_DURATION,SongManager.ORDER_TITLE,SongManager.ORDER_PATH,SongManager.ORDER_DATE};
+		for (int i=0;i < spinnerPoses.length;i++)
+		{
 			Spinner sp= (Spinner) rlFilter.getChildAt(spinnerPoses[i]);
-			spinners[i]=sp;
+			spinners[i] = sp;
 			ArrayList<String> strs=SongManager.getGroupDescriptions(orders[i]);
-			strs.add(0,getString(R.string.all));
-			ArrayAdapter adp=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,strs);
+			strs.add(0, getString(R.string.all));
+			ArrayAdapter adp=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, strs);
 		    sp.setAdapter(adp);
-			defPropmt[i]=sp.getPrompt();
+			defPropmt[i] = sp.getPrompt();
 		}
-		 spSort=(Spinner) rlFilter.getChildAt(15);
-		spSort.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,
-		new String[]{
-		 getString(R.string.title), getString(R.string.artist),getString(R.string.album)
-		,getString(R.string.duration),getString(R.string.dir)
-		,getString(R.string.date_added)}));
-		
-		 spOrder=(Spinner) rlFilter.getChildAt(17);
-		spOrder.setAdapter(new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,
-		new String[]{getString(R.string.order_ascending),getString(R.string.order_descending)}));
+		spSort = (Spinner) rlFilter.getChildAt(15);
+		spSort.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
+												   new String[]{
+													   getString(R.string.title), getString(R.string.artist),getString(R.string.album)
+													   ,getString(R.string.duration),getString(R.string.dir)
+													   ,getString(R.string.date_added)}));
+
+		spOrder = (Spinner) rlFilter.getChildAt(17);
+		spOrder.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
+													new String[]{getString(R.string.order_ascending),getString(R.string.order_descending)}));
 		spSort.setOnItemSelectedListener(new OnItemSelectedListener(){
 				@Override
 				public void onItemSelected(AdapterView<?> p1, View p2, int p3, long p4)
 				{
-					
+
 				}
 
 				@Override
 				public void onNothingSelected(AdapterView<?> p1)
 				{
-					
+
 				}
 			});
 	}
 
 
-	
+
 };

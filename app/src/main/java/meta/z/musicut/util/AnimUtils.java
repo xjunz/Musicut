@@ -11,20 +11,20 @@ import meta.z.musicut.MusicutApplication;
 public class AnimUtils
 {
 	private static Context context=MusicutApplication.context;
-	public static void windmillTrick(final ImageView v,final int image,int rotation){
-	v.animate().rotation(rotation).setDuration(300)
+	
+	//风车戏法：通过在图片旋转过程中切换图片营造过渡效果
+	public static void windmillTrick(final ImageView v,final int imageRes,int rotation){
+	v.animate().rotation(rotation).setDuration(250)
 	.setInterpolator(getLinearOutSlowInInterpolator())
 	.start();
 	v.postDelayed(new Runnable(){
 				@Override
 				public void run()
 				{
-					v.setImageResource(image);
+					v.setImageResource(imageRes);
 				}
 			}, 50);
 		}
-	
-	
 	
 		
 	private static Interpolator fosi_interpolator;
