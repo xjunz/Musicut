@@ -42,8 +42,16 @@ public class Elevate extends Transition {
     @Override
     public Animator createAnimator(ViewGroup sceneRoot, TransitionValues startValues,
                                    TransitionValues endValues) {
+								float a=startValues.values.get((PROPNAME_ELEVATION));
+								float b=endValues.values.get(PROPNAME_ELEVATION);
+								if(a>b){
+									b=0;
+								}else{
+									a=0;
+								}
+								
         return ObjectAnimator.ofFloat(endValues.view, View.TRANSLATION_Z,
-                startValues.values.get(PROPNAME_ELEVATION), endValues.values.get(PROPNAME_ELEVATION));
+                a, b);
     }
 
 }
