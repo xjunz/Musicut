@@ -45,6 +45,10 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 		}
 	}
 	
+	public void clearItemInfoList(){
+		itemInfoList.clear();	
+	}
+	
 	private OnTouchListener touchEater=new OnTouchListener(){
 		@Override
 		public boolean onTouch(View p1, MotionEvent p2)
@@ -72,7 +76,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 			}).setDuration(200).setInterpolator(AnimUtils.getFastOutSlowInInterpolator());
 		rvMusic.setItemAnimator(animator);
 		itemInfoList = new ArrayList<ItemInfo>();
-		SongManager.sort(SongManager.ORDER_ARTIST);
+		SongManager.sort(SongManager.SORT_BY_TITLE,SongManager.ORDER_ASCENDING);
 		SongManager.setSongGroupDescriptor(this);
 		SongManager.refreshDescription();
 	}

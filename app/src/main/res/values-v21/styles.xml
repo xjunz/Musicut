@@ -4,8 +4,6 @@
 	<style name="Musicut" parent="@android:style/Theme.Material.Light.NoActionBar">
 		<item name="android:windowTranslucentNavigation">true</item>
 		<item name="android:statusBarColor">@color/darken</item>
-		<!--<item name="android:interpolator">@android:interpolator/fast_out_slow_in</item>
-		-->
 		<item name="android:colorAccent">@color/pink</item>
 		<item name="android:colorControlHighlight">@color/quater_pink</item>
 		<item name="android:colorEdgeEffect">?android:colorControlHighlight</item>
@@ -47,6 +45,7 @@
 	</style>
 
 	<style name="ToolbarTitleTextAppearance" parent="@android:style/Widget.TextView">
+		<item name="android:textIsSelectable">true</item>
 		<item name="android:typeface">monospace</item>
 		<item name="android:letterSpacing">@dimen/letter_spacing_toolbar_title</item>
 		<item name="android:textSize">@dimen/sp_large</item>
@@ -77,6 +76,7 @@
 	<style name="FilterOptionTextViewAppearance" parent="@android:style/Widget.TextView">
 		<!--<item name="android:theme">@android:style/ThemeOverlay.Material.Dark</item>-->
 		<item name="android:textSize">@dimen/sp_small</item>
+		<item name="android:textIsSelectable">true</item>
 		<item name="android:letterSpacing">@dimen/letter_spacing_small</item>
 		<item name="android:layout_width">wrap_content</item>
 		<item name="android:layout_height">wrap_content</item>

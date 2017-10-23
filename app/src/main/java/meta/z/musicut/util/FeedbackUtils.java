@@ -21,7 +21,7 @@ public class FeedbackUtils
 	
 	public static void showExceptionCaughtDialog(final Context context,Exception e){
 		AlertDialog.Builder builder=new AlertDialog.Builder(context);
-	    builder.setTitle("出了点问题...").setMessage("哦！程序在运行中捕获一只爬虫，上交给开发者？")
+	    builder.setTitle("出了点问题...").setMessage("哦！程序在运行中捕获一只爬虫，上交给开发者？"+e.getMessage())
 			.setPositiveButton("反馈", new DialogInterface.OnClickListener(){
 
 				@Override

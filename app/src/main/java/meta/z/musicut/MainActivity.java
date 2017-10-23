@@ -11,15 +11,17 @@ import android.support.v7.widget.*;
 import android.view.*;
 import android.view.animation.*;
 import android.widget.*;
+import android.widget.AdapterView.*;
+import java.util.*;
 import meta.z.musicut.adapter.*;
 import meta.z.musicut.manager.*;
-import meta.z.musicut.widget.*;
 import meta.z.musicut.util.*;
-import java.util.*;
-import android.widget.AdapterView.*;
+import meta.z.musicut.widget.*;
 
 public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlideListener
 {
+
+	
 
 	private Toolbar toolbar;
 	private RecyclerView rvMusic;
@@ -69,7 +71,9 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 	    this.setContentView(panel);
 		//从媒体储存获取本地歌曲
 		SongManager.scanLocalSongs(this);
-
+        if(SongManager.local_song_list.size()==0){
+			findViewById(R.id.vs_no_music).setVisibility(View.VISIBLE);
+		}
 		this.panel.setOnCurtainSlideListener(this);
 
 		this.initViews();
@@ -286,8 +290,8 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 	private void  initSpinners()
 	{
 		int[] spinnerPoses=new int[]{2,4,6,8,10,12};
-		int[] orders=new int[]{SongManager.ORDER_ARTIST,SongManager.ORDER_ALBUM,
-			SongManager.ORDER_DURATION,SongManager.ORDER_TITLE,SongManager.ORDER_PATH,SongManager.ORDER_DATE};
+		final int[] orders=new int[]{SongManager.SORT_BY_TITLE,SongManager.SORT_BY_ARTIST,SongManager.SORT_BY_ALBUM,
+			SongManager.SORT_BY_DURATION,SongManager.SORT_BY_PATH,SongManager.SORT_BY_DATE};
 		for (int i=0;i < spinnerPoses.length;i++)
 		{
 			Spinner sp= (Spinner) rlFilter.getChildAt(spinnerPoses[i]);
@@ -301,25 +305,28 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 		spSort = (Spinner) rlFilter.getChildAt(15);
 		spSort.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
 												   new String[]{
-													   getString(R.string.title), getString(R.string.artist),getString(R.string.album)
-													   ,getString(R.string.duration),getString(R.string.dir)
-													   ,getString(R.string.date_added)}));
+													  getString(R.string.title), getString(R.string.artist),getString(R.string.album)
+													  ,getString(R.string.duration),getString(R.string.dir)													   ,getString(R.string.date_added)}));
 
 		spOrder = (Spinner) rlFilter.getChildAt(17);
 		spOrder.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
 													new String[]{getString(R.string.order_ascending),getString(R.string.order_descending)}));
 		spSort.setOnItemSelectedListener(new OnItemSelectedListener(){
-				@Override
-				public void onItemSelected(AdapterView<?> p1, View p2, int p3, long p4)
-				{
-
-				}
 
 				@Override
 				public void onNothingSelected(AdapterView<?> p1)
 				{
-
+					
 				}
+				
+				@Override
+				public void onItemSelected(AdapterView<?> p1, View p2, int p3, long p4)
+				{
+                   
+				    
+					}
+
+				
 			});
 	}
 

@@ -9,30 +9,43 @@
 		android:layout_centerHorizontal="true"/>
 
 	<TextView
+		android:id="@+id/tv_title"
+		style="@style/FilterOptionTextViewAppearance"
+		android:text="@string/title"/>
+
+	<Spinner
+		android:id="@+id/sp_title"
+		style="@style/FilterSpinnerStyle"
+		android:layout_toLeftOf="@id/space"
+		android:layout_below="@id/tv_title"/>
+
+	<TextView
 		android:id="@+id/tv_artist"
+		android:layout_toRightOf="@id/space"
 		style="@style/FilterOptionTextViewAppearance"
 		android:text="@string/artist"/>
 
 	<Spinner
 		android:id="@+id/sp_artist"
 		style="@style/FilterSpinnerStyle"
-		android:layout_toLeftOf="@id/space"
+		android:layout_toRightOf="@id/space"
 		android:layout_below="@id/tv_artist"/>
 
 	<TextView
 		android:id="@+id/tv_album"
-		android:layout_toRightOf="@id/space"
 		style="@style/FilterOptionTextViewAppearance"
+		android:layout_below="@id/sp_artist"
 		android:text="@string/album"/>
 
 	<Spinner
 		android:id="@+id/sp_album"
 		style="@style/FilterSpinnerStyle"
-		android:layout_toRightOf="@id/space"
+		android:layout_toLeftOf="@id/space"
 		android:layout_below="@id/tv_album"/>
 
 	<TextView
 		android:id="@+id/tv_duration"
+		android:layout_toRightOf="@id/space"
 		style="@style/FilterOptionTextViewAppearance"
 		android:layout_below="@id/sp_artist"
 		android:text="@string/duration"/>
@@ -40,26 +53,13 @@
 	<Spinner
 		android:id="@+id/sp_duration"
 		style="@style/FilterSpinnerStyle"
-		android:layout_toLeftOf="@id/space"
+		android:layout_toRightOf="@id/space"
 		android:layout_below="@id/tv_duration"/>
-
-	<TextView
-		android:id="@+id/tv_title"
-		android:layout_toRightOf="@id/space"
-		style="@style/FilterOptionTextViewAppearance"
-		android:layout_below="@id/sp_album"
-		android:text="@string/title"/>
-
-	<Spinner
-		android:id="@+id/sp_title"
-		style="@style/FilterSpinnerStyle"
-		android:layout_toRightOf="@id/space"
-		android:layout_below="@id/tv_title"/>
 
 	<TextView
 		android:id="@+id/tv_dir"
 		style="@style/FilterOptionTextViewAppearance"
-		android:layout_below="@id/sp_duration"
+		android:layout_below="@id/sp_album"
 		android:text="@string/dir"/>
 
 	<Spinner
@@ -71,7 +71,7 @@
 	<TextView
 		android:id="@+id/tv_date"
 		android:layout_toRightOf="@id/space"
-		android:layout_below="@id/sp_title"
+		android:layout_below="@id/sp_album"
 		style="@style/FilterOptionTextViewAppearance"
 		android:text="@string/date_added"/>
 
@@ -80,6 +80,7 @@
 		style="@style/FilterSpinnerStyle"
 		android:layout_toRightOf="@id/space"
 		android:layout_below="@id/tv_date"/>
+
 	<View
 		android:id="@+id/lf_divider"
 		android:layout_margin="@dimen/margin_large"
@@ -87,20 +88,19 @@
 		android:layout_height="2px"
 		android:layout_width="match_parent"
 		android:layout_below="@id/sp_date"/>
-	
+
 	<TextView
 		android:id="@+id/tv_sort"
 		android:layout_below="@id/lf_divider"
 		style="@style/FilterOptionTextViewAppearance"
-		android:text="@string/sort"
-	/>
+		android:text="@string/sort"/>
 
 	<Spinner
 		android:id="@+id/sp_sort"
 		style="@style/FilterSpinnerStyle"
 		android:layout_toLeftOf="@id/space"
-		android:layout_below="@id/tv_sort"
-	/>
+		android:layout_below="@id/tv_sort"/>
+
 	<TextView
 		android:id="@+id/tv_order"
 		android:layout_toRightOf="@id/space"
@@ -113,14 +113,28 @@
 		style="@style/FilterSpinnerStyle"
 		android:layout_toRightOf="@id/space"
 		android:layout_below="@id/tv_order"/>
-	
+
+	<View
+		android:id="@+id/lf_divider_2"
+		android:layout_margin="@dimen/margin_large"
+		android:background="?android:attr/dividerVertical"
+		android:layout_height="2px"
+		android:layout_width="match_parent"
+		android:layout_below="@id/sp_order"/>
+
+	<TextView
+		android:id="@+id/tv_song_num"
+		android:layout_below="@id/lf_divider_2"
+		style="@style/FilterOptionTextViewAppearance"
+		android:text="共12首音乐 已筛选出6首 "/>
+
 	<View
 		android:id="@+id/lf_margin"
 		android:layout_marginTop="@dimen/margin_large"
-		android:layout_below="@id/sp_sort"
+		android:layout_below="@id/tv_song_num"
 		android:layout_width="fill_parent"
 		android:background="?android:colorPrimary"
 		android:layout_height="@dimen/margin_large"/>
-	
+
 </merge>
 

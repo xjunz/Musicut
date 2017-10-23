@@ -28,5 +28,17 @@
 	<string name="exit">退出</string>
 	<string name="order_ascending">升序</string>
 	<string name="order_descending">降序</string>
-	<string name="all">全部</string>
-</resources>
+	<string name="all">（全部）</string>
+	<string name="no_music">
+		\n╔══╗       ♬ ♪ ♫ 
+		\n║██║    ♫  ♫     
+		\n║ （（●）） ♪          
+		\n╚══╝               
+		\n生活不能没有音乐...
+	</string>
+	<string name="netease_cloud_music">网易云音乐</string>
+	<string name="kuwo_music">酷我音乐</string>
+	<string name="qq_music">QQ音乐</string>
+	<string name="download_content">下载内容</string>
+	<string name="kgmusic">酷狗音乐</string>
+	</resources>

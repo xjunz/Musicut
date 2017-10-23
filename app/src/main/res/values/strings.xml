@@ -29,5 +29,18 @@
 	<string name="exit">exit</string>
 	<string name="order_ascending">Ascending order</string>
 	<string name="order_descending">Descending order</string>
-	<string name="all">All</string>
+	<string name="all">(All)</string>
+	<string name="no_music">
+		\n╔══╗       ♬ ♪ ♫
+		\n║██║    ♫  ♫
+		\n║ （（●）） ♪  
+		\n╚══╝  
+		\nLife cannot be with no music...
+	</string>
+	<string name="netease_cloud_music">Netease Cloud Music</string>
+	<string name="kuwo_music">Kuwo Music</string>
+	<string name="qq_music">QQ Music</string>
+	<string name="download_content">Download Content</string>
+	<string name="kgmusic">Kugou Music</string>
+	
 </resources>
