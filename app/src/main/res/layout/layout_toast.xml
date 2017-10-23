@@ -3,12 +3,13 @@
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
-	android:background="@drawable/bck_dialog"
+	android:background="@drawable/bck_toast"
 	android:elevation="@dimen/z_toast"
 	android:gravity="center"
 	android:orientation="horizontal">
 
 	<meta.z.musicut.widget.CircularImageView
+		android:tint="#ffffff"
 		android:layout_width="@dimen/d_toast_icon"
 		android:layout_height="@dimen/d_toast_icon"
 		android:layout_margin="@dimen/margin_normal"
@@ -16,16 +17,17 @@
 
 	<View
 		android:layout_width="1dp"
-		android:background="?android:attr/dividerVertical"
+		android:background="#ffffff"
 		android:layout_height="@dimen/d_toast_icon"
 		/>
 
 	<TextView
+		android:textColor="#ffffff"
 		android:layout_margin="@dimen/margin_normal"
 		android:layout_width="wrap_content"
 		android:letterSpacing="@dimen/letter_spacing_small"
 		android:layout_height="wrap_content"
-		android:textSize="@dimen/sp_mid"/>
+		android:textSize="@dimen/sp_small"/>
 
 </LinearLayout>
 
