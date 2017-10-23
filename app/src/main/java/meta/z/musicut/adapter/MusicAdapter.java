@@ -27,7 +27,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 	{   
 	    public static final int TYPE_ITEM_SONG=0;
 		public static final int TYPE_ITEM_HEADER=1;
-		
+
 		Song song;
 		String description;
 		boolean expand;
@@ -44,11 +44,12 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 			type = TYPE_ITEM_HEADER;
 		}
 	}
-	
-	public void clearItemInfoList(){
+
+	public void clearItemInfoList()
+	{
 		itemInfoList.clear();	
 	}
-	
+
 	private OnTouchListener touchEater=new OnTouchListener(){
 		@Override
 		public boolean onTouch(View p1, MotionEvent p2)
@@ -76,7 +77,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 			}).setDuration(200).setInterpolator(AnimUtils.getFastOutSlowInInterpolator());
 		rvMusic.setItemAnimator(animator);
 		itemInfoList = new ArrayList<ItemInfo>();
-		SongManager.sort(SongManager.SORT_BY_TITLE,SongManager.ORDER_ASCENDING);
+		//SongManager.sort(SongManager.SORT_BY_TITLE, SongManager.ORDER_ASCENDING);
 		SongManager.setSongGroupDescriptor(this);
 		SongManager.refreshDescription();
 	}
@@ -101,7 +102,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 		itemInfoList.add(new ItemInfo(SongManager.cur_song_list.get(song.postion), des, ItemInfo.TYPE_ITEM_SONG));
 
 	}
-	
+
 	@Override
 	public int getItemViewType(int position)
 	{
@@ -155,7 +156,6 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 				final Song song=itemInfo.song;
 				if (itemInfo.collapz)
 				{
-
 					UiUtils.gone(p1.rlInfo, p1.llOption);
 					return;
 				}

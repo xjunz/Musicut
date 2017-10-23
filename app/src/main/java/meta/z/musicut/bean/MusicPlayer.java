@@ -17,7 +17,7 @@ public class MusicPlayer extends MediaPlayer
 	public Song song;
 	public int var_update_period;
 	public boolean var_should_fade_out,var_should_fade_in;
-	public int var_fade_duration=1000;
+	public int var_fade_duration=500;
     public boolean var_timer_enabled=false;
 
 	private OnProgressUpdateListener onProgressUpdateListener;
@@ -130,7 +130,7 @@ public class MusicPlayer extends MediaPlayer
 	}
 
 	private ValueAnimator fadeOutAnimator;
-	private void fadeOut()
+	private void fadeOut() 
 	{
 
 		if(fadeOutAnimator==null){
@@ -157,7 +157,7 @@ public class MusicPlayer extends MediaPlayer
 	}
 
 	private ValueAnimator fadeInAnimator;
-	private void fadeIn(int fadeDuration)
+	private void fadeIn(int fadeDuration) 
 	{
 		if(fadeInAnimator==null){
 		 fadeInAnimator=new ValueAnimator()

@@ -17,7 +17,7 @@
 		<dimen name="r_album_image">18dp</dimen>
 		<dimen name="d_music_player_album_image">50dp</dimen>
 		<dimen name="d_toast_icon">40dp</dimen>
-		<dimen name="z_item_song">1dp</dimen>
+		<dimen name="z_item_song">3px</dimen>
 		<dimen name="z_raise">3dp</dimen>
 		<dimen name="z_activated">1dp</dimen>
 		<dimen name="d_option_image">25dp</dimen>

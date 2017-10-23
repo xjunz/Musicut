@@ -81,7 +81,7 @@ public class UiUtils
 				if (obj == null)
 				{
 					instantToast("null");
-					Log.d("debug", "null");
+					
 				}
 				else if (obj instanceof Object[])
 				{
@@ -90,7 +90,6 @@ public class UiUtils
 				else
 				{
 					instantToast(obj.toString());
-					Log.i("dehug", obj.toString());
 				}
 			}
 		}

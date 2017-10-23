@@ -18,11 +18,8 @@ import meta.z.musicut.manager.*;
 import meta.z.musicut.util.*;
 import meta.z.musicut.widget.*;
 
-public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlideListener
+public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlideListener,OnItemSelectedListener
 {
-
-	
-
 	private Toolbar toolbar;
 	private RecyclerView rvMusic;
 	private CurtainPanel panel;
@@ -39,27 +36,27 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
     {
         super.onCreate(savedInstanceState);
 
-        try
-		{
-            //判断应用是否拥有读取内置储存的权限
-			if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
-				== PackageManager.PERMISSION_DENIED)
-			{   //没有权限则申请
-				ActivityCompat.requestPermissions(this,
-												  new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-												  PERMISSION_REQUEST_CODE);
-			}
-			else
-			{   //有权限则加载界面
-				afterPermissionGranted();
-			}
-
+		// try
+		//{
+		//判断应用是否拥有读取内置储存的权限
+		if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+			== PackageManager.PERMISSION_DENIED)
+		{   //没有权限则申请
+			ActivityCompat.requestPermissions(this,
+											  new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+											  PERMISSION_REQUEST_CODE);
 		}
-		catch (Exception e)
-		{
-			FeedbackUtils.showExceptionCaughtDialog(this, e);
-
+		else
+		{   //有权限则加载界面
+			afterPermissionGranted();
 		}
+
+		/*}
+		 catch (Exception e)
+		 {
+		 FeedbackUtils.showExceptionCaughtDialog(this, e);
+
+		 }*/
 
 
 	}
@@ -71,7 +68,8 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 	    this.setContentView(panel);
 		//从媒体储存获取本地歌曲
 		SongManager.scanLocalSongs(this);
-        if(SongManager.local_song_list.size()==0){
+        if (SongManager.local_song_list.size() == 0)
+		{
 			findViewById(R.id.vs_no_music).setVisibility(View.VISIBLE);
 		}
 		this.panel.setOnCurtainSlideListener(this);
@@ -165,6 +163,8 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 				.start();
 		}
 		AnimUtils.windmillTrick(fabFilter, R.mipmap.ic_check, 360);
+
+
 	}
 
 	@Override
@@ -277,59 +277,119 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 			case R.id.scrim:
 				panel.closeCurtain();
 				break;
-			case R.id.fab_filter:		
+			case R.id.fab_filter:	
+				if (panel.isCurtainOpen())
+				{
+					this.filter();
+					this.sort();
+					musicAdapter.clearItemInfoList();
+					SongManager.refreshDescription();
+					musicAdapter.notifyDataSetChanged();
+				}
 				panel.autoCurtain();
 				break;
 		}
 	}
 
+
 	private Spinner[] spinners=new Spinner[6];
 	private Spinner spSort,spOrder;
-	private CharSequence[] defPropmt=new String[8];
+	private String[] deses=new String[6];
+	private int order,sortBy;
+	private final int[] spinnerPoses=new int[]{2,4,6,8,10,12};
+	private final int[] orders=new int[]{SongManager.SORT_BY_TITLE,SongManager.SORT_BY_ARTIST,SongManager.SORT_BY_ALBUM,SongManager.SORT_BY_DURATION,SongManager.SORT_BY_PATH,SongManager.SORT_BY_DATE};
+    private ArrayList<String>[] groupDeses=new ArrayList[orders.length];
+
 
 	private void  initSpinners()
 	{
-		int[] spinnerPoses=new int[]{2,4,6,8,10,12};
-		final int[] orders=new int[]{SongManager.SORT_BY_TITLE,SongManager.SORT_BY_ARTIST,SongManager.SORT_BY_ALBUM,
-			SongManager.SORT_BY_DURATION,SongManager.SORT_BY_PATH,SongManager.SORT_BY_DATE};
+
 		for (int i=0;i < spinnerPoses.length;i++)
 		{
 			Spinner sp= (Spinner) rlFilter.getChildAt(spinnerPoses[i]);
 			spinners[i] = sp;
-			ArrayList<String> strs=SongManager.getGroupDescriptions(orders[i]);
-			strs.add(0, getString(R.string.all));
-			ArrayAdapter adp=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, strs);
+			groupDeses[i] = SongManager.getGroupDescriptions(orders[i]);
+			groupDeses[i].add(0, getString(R.string.all));
+			ArrayAdapter adp=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, groupDeses[i]);
 		    sp.setAdapter(adp);
-			defPropmt[i] = sp.getPrompt();
+			sp.setOnItemSelectedListener(this);
+			
 		}
 		spSort = (Spinner) rlFilter.getChildAt(15);
-		spSort.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
-												   new String[]{
-													  getString(R.string.title), getString(R.string.artist),getString(R.string.album)
-													  ,getString(R.string.duration),getString(R.string.dir)													   ,getString(R.string.date_added)}));
-
+		spSort.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, new String[]{ getString(R.string.title), getString(R.string.artist),getString(R.string.album),getString(R.string.duration),getString(R.string.dir),getString(R.string.date_added)}));
 		spOrder = (Spinner) rlFilter.getChildAt(17);
-		spOrder.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,
-													new String[]{getString(R.string.order_ascending),getString(R.string.order_descending)}));
-		spSort.setOnItemSelectedListener(new OnItemSelectedListener(){
+		spOrder.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, new String[]{getString(R.string.order_ascending),getString(R.string.order_descending)}));
 
-				@Override
-				public void onNothingSelected(AdapterView<?> p1)
-				{
-					
-				}
-				
-				@Override
-				public void onItemSelected(AdapterView<?> p1, View p2, int p3, long p4)
-				{
-                   
-				    
-					}
-
-				
-			});
+		spSort.setOnItemSelectedListener(this);
+		spOrder.setOnItemSelectedListener(this);
 	}
 
 
+	//spinner条目选中事件
+	@Override
+	public void onItemSelected(AdapterView<?> p1, View p2, int p3, long p4)
+	{
+		switch (p1.getId())
+		{
+			case R.id.sp_sort:
+                sortBy =orders[p3];
+				break;
+			case R.id.sp_order:
+                order = (p3 == 0 ?SongManager.ORDER_DESCENDING:SongManager.ORDER_ASCENDING);
+				break;
+			case R.id.sp_title:
+				deses[0] = groupDeses[0].get(p3);
+				
+				break;
+			case R.id.sp_artist:
+				deses[1] = groupDeses[1].get(p3);
+
+				break;
+			case R.id.sp_album:
+				deses[2] = groupDeses[2].get(p3);
+
+				break;
+			case R.id.sp_duration:
+				deses[3] = groupDeses[3].get(p3);
+
+				break;
+			case R.id.sp_dir:
+				deses[4] = groupDeses[4].get(p3);
+
+				break;
+			case R.id.sp_date:
+				deses[5] = groupDeses[5].get(p3);
+
+				break;
+		}
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> p1)
+	{
+
+	}
+
+	private void filter()
+	{
+
+		SongManager.cancelFilter();
+		String all=getString(R.string.all);
+
+		for (int i=0;i < spinners.length;i++)
+		{
+			if (!deses[i].equals(all))
+			{		
+			   
+				SongManager.filter(orders[i], deses[i]);	
+				//UiUtils.debugToast("正在过滤选项："+i+"  \n条件："+deses[i]+" \n过滤出"+String.valueOf(SongManager.cur_song_list.size()));
+			}
+		}
+	}
+
+	private void sort()
+	{
+		SongManager.sort(sortBy, order);
+	}
 
 };
