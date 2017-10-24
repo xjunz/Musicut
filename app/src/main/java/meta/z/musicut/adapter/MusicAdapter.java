@@ -161,7 +161,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 				}
 				UiUtils.visible(p1.rlInfo);
 				p1.tvSongTitle.setText(song.title);
-				p1.tvSongInfo.setText(song.artist + " - " + song.album);
+				p1.tvSongInfo.setText(song.artist + " - " +song.album+" - "+ MusicUtils.formatSongDuration(song.duration));
 				p1.civAlbumArt.setImageResource(R.mipmap.ic_default_album_art);
 				new Thread(new Runnable(){
 						@Override

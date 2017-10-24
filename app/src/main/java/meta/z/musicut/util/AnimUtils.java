@@ -14,7 +14,7 @@ public class AnimUtils
 	
 	//风车戏法：通过在图片旋转过程中切换图片营造过渡效果
 	public static void windmillTrick(final ImageView v,final int imageRes,int rotation){
-	v.animate().rotation(rotation).setDuration(250)
+	v.animate().rotation(rotation).setDuration(200)
 	.setInterpolator(getLinearOutSlowInInterpolator())
 	.start();
 	v.postDelayed(new Runnable(){
@@ -23,7 +23,7 @@ public class AnimUtils
 				{
 					v.setImageResource(imageRes);
 				}
-			}, 50);
+			}, 30);
 		}
 	
 		

@@ -68,6 +68,7 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 	    this.setContentView(panel);
 		//从媒体储存获取本地歌曲
 		SongManager.scanLocalSongs(this);
+
         if (SongManager.local_song_list.size() == 0)
 		{
 			findViewById(R.id.vs_no_music).setVisibility(View.VISIBLE);
@@ -112,6 +113,7 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 
 	}
 
+	private TextView tvSongNum;
 	//初始化控件
 	private void initViews() 
 	{
@@ -121,6 +123,8 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 		rvMusic.setLayoutManager(new LinearLayoutManager(this));
 		toolbar = (Toolbar)findViewById(R.id.toolbar);
 	    setActionBar(toolbar);
+		tvSongNum = (TextView) findViewById(R.id.tv_song_num);
+		tvSongNum.setText(getString(R.string.info_song, SongManager.local_song_list.size(), SongManager.cur_song_list.size()));
 		scrim = findViewById(R.id.scrim);
 		initSpinners();
 	}
@@ -164,7 +168,6 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 		}
 		AnimUtils.windmillTrick(fabFilter, R.mipmap.ic_check, 360);
 
-
 	}
 
 	@Override
@@ -174,6 +177,7 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 		AnimUtils.windmillTrick(fabFilter, R.mipmap.ic_filter_variant, 0);
 	}
 
+	long last;
 	@Override
 	public void onBackPressed()
 	{
@@ -183,7 +187,24 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 		}
 		else
 		{
-			super.onBackPressed();
+			if (last == 0)
+			{
+				last = System.currentTimeMillis();
+				MusicutToast.makeAndShow(this,R.string.noti_press_again);
+			}
+			else
+			{
+				if (System.currentTimeMillis() - last > 2000)
+				{
+					last = 0;
+					MusicutToast.makeAndShow(this, R.string.noti_press_again);
+				}
+				else
+				{
+					super.onBackPressed();
+				}
+			}
+
 		}
 	}
 
@@ -288,6 +309,14 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 				}
 				panel.autoCurtain();
 				break;
+			case R.id.btn_cancel_filter:
+				for (int i=0;i < spinners.length;i++)
+				{
+					spinners[i].setSelection(0, true);
+					deses[i] = getString(R.string.all);
+				}
+				fabFilter.performClick();
+				break;
 		}
 	}
 
@@ -313,7 +342,7 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 			ArrayAdapter adp=new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, groupDeses[i]);
 		    sp.setAdapter(adp);
 			sp.setOnItemSelectedListener(this);
-			
+
 		}
 		spSort = (Spinner) rlFilter.getChildAt(15);
 		spSort.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, new String[]{ getString(R.string.title), getString(R.string.artist),getString(R.string.album),getString(R.string.duration),getString(R.string.dir),getString(R.string.date_added)}));
@@ -332,14 +361,14 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 		switch (p1.getId())
 		{
 			case R.id.sp_sort:
-                sortBy =orders[p3];
+                sortBy = orders[p3];
 				break;
 			case R.id.sp_order:
-                order = (p3 == 0 ?SongManager.ORDER_DESCENDING:SongManager.ORDER_ASCENDING);
+                order = (p3 == 0 ?SongManager.ORDER_DESCENDING: SongManager.ORDER_ASCENDING);
 				break;
 			case R.id.sp_title:
 				deses[0] = groupDeses[0].get(p3);
-				
+
 				break;
 			case R.id.sp_artist:
 				deses[1] = groupDeses[1].get(p3);
@@ -380,11 +409,11 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 		{
 			if (!deses[i].equals(all))
 			{		
-			   
 				SongManager.filter(orders[i], deses[i]);	
-				//UiUtils.debugToast("正在过滤选项："+i+"  \n条件："+deses[i]+" \n过滤出"+String.valueOf(SongManager.cur_song_list.size()));
 			}
 		}
+		tvSongNum.setText(getString(R.string.info_song, SongManager.local_song_list.size(), SongManager.cur_song_list.size()));
+
 	}
 
 	private void sort()

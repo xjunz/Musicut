@@ -12,10 +12,9 @@ public class Song implements Parcelable
 	public String artist;
 	public String album;
 	public String path;
-	public String date_added;
+	public long date_added;
 	public long album_id;
 	public long song_id;
-	public long size;
 	public long duration;
 	public int  postion;
 	
@@ -35,8 +34,8 @@ public class Song implements Parcelable
 	@Override
 	public void writeToParcel(Parcel p1, int p2)
 	{
-		String[] strs=new String[]{album,artist,title,date_added,path};
-		long[] longs=new long[]{album_id,song_id,duration,size};
+		String[] strs=new String[]{album,artist,title,path};
+		long[] longs=new long[]{album_id,song_id,duration,date_added};
 		p1.writeStringArray(strs);
 		p1.writeLongArray(longs);
 		p1.writeInt(postion);
@@ -57,19 +56,18 @@ public class Song implements Parcelable
 
 	public Song(Parcel in)
 	{
-		String[] strs=new String[5];
+		String[] strs=new String[4];
 		in.readStringArray(strs);
 		long[] longs=new long[4];
 		in.readLongArray(longs);
 	    album=strs[0];
 		artist=strs[1];
 		title=strs[2];
-		date_added=strs[3];
-		path=strs[4];
+		path=strs[3];
 		album_id=longs[0];
 		song_id=longs[1];
 		duration=longs[2];
-		size=longs[3];
+		date_added=longs[3];
 		postion=in.readInt();
 	}
 }

@@ -3,10 +3,10 @@ import android.content.*;
 import android.database.*;
 import android.provider.*;
 import java.io.*;
+import java.text.*;
 import java.util.*;
-import meta.z.musicut.bean.*;
 import meta.z.musicut.*;
-import meta.z.musicut.util.*;
+import meta.z.musicut.bean.*;
 
 public class SongManager
 {
@@ -43,9 +43,8 @@ public class SongManager
 			song.path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA));
 			song.album_id = Long.parseLong(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID)));
 			song.song_id = Long.parseLong(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID)));
-			song.size = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.SIZE));
-			song.album = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM));
-			song.date_added = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATE_ADDED));
+		    song.album = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM));
+			song.date_added = new File(song.path).lastModified();
 			song.duration = Long.parseLong(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION)));
 			local_song_list.add(song);
 		}
@@ -63,9 +62,10 @@ public class SongManager
 	public static void filter(int filterBy, String des)
 	{
 		Iterator<Song> it=cur_song_list.iterator();
-		while(it.hasNext()){
+		while (it.hasNext())
+		{
 			Song song=
-			it.next();
+				it.next();
 			if (!getDescription(song, filterBy).equals(des))
 			{
 				it.remove();
@@ -151,7 +151,8 @@ public class SongManager
 			case SORT_BY_ALBUM:
 				return song.album;
 			case SORT_BY_DATE:
-				return song.date_added;
+				String ctime = new SimpleDateFormat("yyyy-MM-dd").format(new Date(new File(song.path).lastModified()));
+				return ctime;
 		}
 		return "";
 	}
@@ -189,7 +190,7 @@ public class SongManager
 	{
 		private int sortBy;
 		private int order=1;
-		
+
 		protected  SongComparator(int sortBy, int order)
 		{
 			this.sortBy = sortBy;
@@ -207,7 +208,7 @@ public class SongManager
 				case SORT_BY_ARTIST:
 					return order * p1.artist.compareToIgnoreCase(p2.artist);
 				case SORT_BY_DATE:
-					return order * p1.date_added.compareToIgnoreCase(p2.date_added);
+					return order * (int)(p1.date_added - p2.date_added);
 				case SORT_BY_DURATION:
 					return order * (int)(p1.duration - p2.duration);
 				case SORT_BY_PATH:

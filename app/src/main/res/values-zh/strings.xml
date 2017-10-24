@@ -28,7 +28,7 @@
 	<string name="exit">退出</string>
 	<string name="order_ascending">升序</string>
 	<string name="order_descending">降序</string>
-	<string name="all">（全部）</string>
+	<string name="all">&lt;全部&gt;</string>
 	<string name="no_music">
 		\n╔══╗       ♬ ♪ ♫ 
 		\n║██║    ♫  ♫     
@@ -41,4 +41,7 @@
 	<string name="qq_music">QQ音乐</string>
 	<string name="download_content">下载内容</string>
 	<string name="kgmusic">酷狗音乐</string>
+	<string name="cancel_filter">取消筛选</string>
+	<string name="info_song">共%1$s首音乐 已筛选出%2$s首</string>
+	<string name="noti_press_again">两秒之内再次点击返回键以退出</string>
 	</resources>

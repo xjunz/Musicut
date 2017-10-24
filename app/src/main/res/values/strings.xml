@@ -29,7 +29,7 @@
 	<string name="exit">exit</string>
 	<string name="order_ascending">Ascending order</string>
 	<string name="order_descending">Descending order</string>
-	<string name="all">(All)</string>
+	<string name="all">&lt;All&gt;</string>
 	<string name="no_music">
 		\n╔══╗       ♬ ♪ ♫
 		\n║██║    ♫  ♫
@@ -42,5 +42,7 @@
 	<string name="qq_music">QQ Music</string>
 	<string name="download_content">Download Content</string>
 	<string name="kgmusic">Kugou Music</string>
-	
+	<string name="cancel_filter">Cancel Filter</string>
+	<string name="info_song">%1$s songs in total %2$s songs filtered</string>
+	<string name="noti_press_again">Press again within 2 sec to exit.</string>
 </resources>
