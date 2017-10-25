@@ -17,6 +17,7 @@ import meta.z.musicut.adapter.*;
 import meta.z.musicut.manager.*;
 import meta.z.musicut.util.*;
 import meta.z.musicut.widget.*;
+import android.media.*;
 
 public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlideListener,OnItemSelectedListener
 {
@@ -102,7 +103,21 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 					}
 				}
 			});
-
+		MediaMetadataRetriever mmr = new MediaMetadataRetriever();  
+		try 
+		{  
+			mmr.setDataSource("/sdcard/netease/cloudmusic/Music/Clive - Reverie.mp3");  
+			//String title = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE); 
+			//String album = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);  
+			//String artist = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);  
+			//MusicutToast.makeAndShow(this,  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)); // 播放时长单位为毫秒  
+			//byte[] pic = mmr.getEmbeddedPicture();  // 图片，可以通过BitmapFactory.decodeByteArray转换为bitmap图片
+		} 
+		catch (Exception e) 
+		{  
+			e.printStackTrace();  
+		}  
+			
 		//APP升级提示
 		if (SharedPrefsManager.needNotifyUpdate())
 
@@ -214,6 +229,7 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 	public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults)
     {
 
+		
         if (requestCode == this.PERMISSION_REQUEST_CODE)
         {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
@@ -345,7 +361,7 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 
 		}
 		spSort = (Spinner) rlFilter.getChildAt(15);
-		spSort.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, new String[]{ getString(R.string.title), getString(R.string.artist),getString(R.string.album),getString(R.string.duration),getString(R.string.dir),getString(R.string.date_added)}));
+		spSort.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, new String[]{ getString(R.string.title), getString(R.string.artist),getString(R.string.album),getString(R.string.duration),getString(R.string.dir),getString(R.string.date_last_modified)}));
 		spOrder = (Spinner) rlFilter.getChildAt(17);
 		spOrder.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, new String[]{getString(R.string.order_ascending),getString(R.string.order_descending)}));
 

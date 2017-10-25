@@ -73,7 +73,7 @@
 		android:layout_toRightOf="@id/space"
 		android:layout_below="@id/sp_album"
 		style="@style/FilterOptionTextViewAppearance"
-		android:text="@string/date_added"/>
+		android:text="@string/date_last_modified"/>
 
 	<Spinner
 		android:id="@+id/sp_date"

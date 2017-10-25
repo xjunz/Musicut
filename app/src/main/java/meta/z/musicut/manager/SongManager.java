@@ -44,7 +44,7 @@ public class SongManager
 			song.album_id = Long.parseLong(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID)));
 			song.song_id = Long.parseLong(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID)));
 		    song.album = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM));
-			song.date_added = new File(song.path).lastModified();
+			song.date_last_modified = new File(song.path).lastModified();
 			song.duration = Long.parseLong(cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION)));
 			local_song_list.add(song);
 		}
@@ -208,7 +208,7 @@ public class SongManager
 				case SORT_BY_ARTIST:
 					return order * p1.artist.compareToIgnoreCase(p2.artist);
 				case SORT_BY_DATE:
-					return order * (int)(p1.date_added - p2.date_added);
+					return order * (int)(p1.date_last_modified - p2.date_last_modified);
 				case SORT_BY_DURATION:
 					return order * (int)(p1.duration - p2.duration);
 				case SORT_BY_PATH:

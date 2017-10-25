@@ -20,5 +20,6 @@ android {
 }
 
 dependencies {
+	compile project(':tikitiki:app')
 	compile 'com.android.support:recyclerview-v7:+'
 	}

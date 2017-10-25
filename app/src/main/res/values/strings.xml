@@ -6,7 +6,7 @@
 	<string name="artist">Artist</string>
 	<string name="album">Album</string>
 	<string name="duration">Duration</string>
-	<string name="date_added">Date added</string>
+	<string name="date_last_modified">Date last modified</string>
 	<string name="dir">Directory</string>
 	<string name="size">Size</string>
 	<string name="sort">Sort</string>

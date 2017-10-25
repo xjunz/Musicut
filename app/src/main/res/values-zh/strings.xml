@@ -5,7 +5,7 @@
 	<string name="artist">艺术家</string>
 	<string name="album">专辑</string>
 	<string name="duration">时长</string>
-	<string name="date_added">添加日期</string>
+	<string name="date_last_modified">最后修改日期</string>
 	<string name="dir">目录</string>
 	<string name="size">体积</string>
 	<string name="sort">排序</string>
