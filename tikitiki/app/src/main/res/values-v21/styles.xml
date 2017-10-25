@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <style name="TikiTiki" parent="@android:style/Theme.Material.Light">
+		<item name="android:colorAccent">#FF4081</item> 
+	    <item name="android:colorButtonNormal">#FF4081</item>
+	  <item name="android:actionBarStyle">@style/ActionBarStyle</item>
+	  
+   </style>
+	<style name="ActionBarStyle" parent="@android:style/Widget.DeviceDefault.Light.ActionBar.Solid">
+		<item name="android:titleTextStyle">@style/ActionbarTitleAppearence</item>
+		<item name="android:elevation">5px</item>
+		
+	</style>
+	
+   <style name="ActionbarTitleAppearence" >
+	    <item name="android:textSize">20sp</item>
+	   <item name="android:letterSpacing">.5</item>
+	   <item name="android:typeface">sans</item>
+   </style>
+</resources>

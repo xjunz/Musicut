@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<Button
+		android:textColor="#ffffff"
+		android:text="@string/search"
+		android:layout_marginTop="50dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_centerInParent="true"
+		android:id="@+id/mainButton1"/>
+
+	<EditText
+		android:id="@+id/et_keyword"
+		android:hint="@string/hint"
+		android:layout_marginTop="50dp"
+		android:layout_marginLeft="24dp"
+		android:layout_marginRight="24dp"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:singleLine="true"
+		android:layout_above="@id/mainButton1"/>
+
+	<RadioGroup
+		android:id="@+id/radio_group"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:layout_above="@id/et_keyword"
+		android:gravity="center">
+
+		<RadioButton
+			android:layout_width="wrap_content"
+			android:layout_margin="16dp"
+			android:layout_height="wrap_content"
+			android:text="@string/vendor_tencent"/>
+
+		<RadioButton
+			android:layout_margin="16dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/vendor_netease"/>
+
+		<RadioButton
+			android:layout_margin="16dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/vendor_kugou"/>
+
+	</RadioGroup>
+
+	<TextView
+		android:layout_marginBottom="50dp"
+		android:letterSpacing=".2"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:layout_width="wrap_content"
+		android:text="@string/title"
+		android:layout_above="@id/radio_group"
+		android:layout_centerHorizontal="true"
+		android:typeface="sans"
+		android:id="@+id/mainTextView1"/>
+
+	<View
+		
+		android:background="?android:attr/dividerVertical"
+		android:layout_height="1px"
+		android:layout_alignLeft="@id/et_keyword"
+		android:layout_alignRight="@id/et_keyword"
+		android:layout_width="match_parent"
+		android:layout_below="@id/mainTextView1"/>
+	<View
+		android:background="?android:attr/dividerVertical"
+		android:layout_height="1px"
+		android:layout_alignLeft="@id/et_keyword"
+		android:layout_alignRight="@id/et_keyword"
+		android:layout_width="match_parent"
+		android:layout_below="@id/radio_group"/>
+	
+</RelativeLayout>
+
