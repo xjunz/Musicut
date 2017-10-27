@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<Toolbar
+		android:id="@+id/tiki_toolbar"
+		android:elevation="5px"
+		style="@style/ToolbarStyle"
+		android:background="?android:colorPrimary"
+		/>
+
+	<TextView
+		android:layout_below="@id/tiki_toolbar"
+		android:layout_marginTop="?android:attr/actionBarSize"
+		android:letterSpacing=".2"
+		android:layout_height="wrap_content"
+		android:textAppearance="?android:attr/textAppearanceMedium"
+		android:layout_width="wrap_content"
+		android:text="@string/tiki_title"
+		android:layout_centerHorizontal="true"
+		android:typeface="sans"
+		android:id="@+id/tv_tiki_title"/>
+
+	<View
+		android:layout_marginLeft="@dimen/margin_large"
+		android:layout_marginRight="@dimen/margin_large"
+		
+		android:background="?android:attr/dividerVertical"
+		android:layout_height="1px"
+		android:layout_width="match_parent"
+		android:layout_below="@id/tv_tiki_title"
+		android:id="@+id/v_tiki_1"
+		android:layout_marginTop="48dp"/>
+
+	<RadioGroup
+		android:id="@+id/radio_group"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		android:gravity="center"
+		android:layout_below="@id/v_tiki_1">
+
+		<RadioButton
+			android:id="@+id/rb_vendor_tencent"
+			android:layout_width="wrap_content"
+			android:layout_margin="16dp"
+			android:layout_height="wrap_content"
+			android:text="@string/vendor_tencent"/>
+
+		<RadioButton
+			android:id="@+id/rb_vendor_netease"
+			android:layout_margin="16dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/vendor_netease"/>
+
+		<RadioButton
+			android:id="@+id/rb_vendor_kugou"
+			android:layout_margin="16dp"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/vendor_kugou"/>
+
+	</RadioGroup>
+
+	<View
+		android:layout_alignLeft="@id/v_tiki_1"
+		android:layout_alignRight="@id/v_tiki_1"
+		
+		android:background="?android:attr/dividerVertical"
+		android:layout_height="1px"
+		android:layout_width="match_parent"
+		android:layout_below="@id/radio_group"
+		android:id="@+id/v_tiki_2"/>
+
+	<EditText
+		android:id="@+id/et_keyword"
+		android:hint="@string/hint"
+		android:layout_marginTop="50dp"
+		android:layout_marginLeft="@dimen/margin_large"
+		android:layout_marginRight="@dimen/margin_large"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:singleLine="true"
+		android:layout_below="@id/v_tiki_2"/>
+
+	<Button
+		android:onClick="onClick"
+		android:textColor="#ffffff"
+		android:text="@string/search"
+		android:layout_below="@id/et_keyword"
+		android:layout_marginTop="48dp"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/btn_search"
+		android:layout_centerHorizontal="true"/>
+
+	<ListView
+		android:id="@+id/lv"
+		android:layout_width="match_parent"
+		android:layout_below="@id/btn_search"
+		android:layout_height="match_parent"
+		android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
+

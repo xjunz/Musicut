@@ -27,10 +27,15 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
 	    <item name="android:windowBackground">@color/scrim</item>
 	</style>
-
+	
+	<style name="Musicut.Tiki" >
+		<item name="android:actionOverflowMenuStyle">@style/ToolbarPopupStyle</item>
+		<item name="android:colorButtonNormal">?android:attr/colorAccent</item>
+    </style>
+	
+	
 	<!--toolbar-->
 	<style name="ToolbarStyle" parent="@android:style/Widget.Toolbar">
-		<!--<item name="android:theme">@android:style/ThemeOverlay.Material.Dark</item>-->
 		<item name="android:fitsSystemWindows">true</item>
 		<item name="android:titleTextAppearance">@style/ToolbarTitleTextAppearance</item>
 		<item name="android:elevation">@dimen/z_toolbar</item>
@@ -45,7 +50,6 @@
 	</style>
 
 	<style name="ToolbarTitleTextAppearance" parent="@android:style/Widget.TextView">
-		<item name="android:textIsSelectable">true</item>
 		<item name="android:typeface">monospace</item>
 		<item name="android:letterSpacing">@dimen/letter_spacing_toolbar_title</item>
 		<item name="android:textSize">@dimen/sp_large</item>

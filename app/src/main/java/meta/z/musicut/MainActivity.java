@@ -154,10 +154,7 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-		switch (item.getItemId())
-		{
-
-		}
+		startActivity(new Intent(this,TikiActivity.class));
 		return super.onOptionsItemSelected(item);
 	}
 

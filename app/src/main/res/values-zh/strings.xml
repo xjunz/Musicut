@@ -44,4 +44,17 @@
 	<string name="cancel_filter">取消筛选</string>
 	<string name="info_song">共%1$s首音乐 已筛选出%2$s首</string>
 	<string name="noti_press_again">两秒之内再次点击返回键以退出</string>
+	<string name="tiki_title">自由的音乐</string>
+	<string name="search">搜索</string>
+	<string name="about">关于</string>
+	<string name="about_tikitiki">
+		本应用搜索内容来自 「tikitiki.cn」，
+		Tikitiki聚合了几大平台的音乐，你可以在Tikitiki
+		下载音乐（仅限免费音乐）而不用安装对应平台的客户端。	
+	</string>
+	<string name="visit">访问</string>
+	<string name="vendor_tencent">腾讯</string>
+	<string name="vendor_netease">网易</string>
+	<string name="vendor_kugou">酷狗</string>
+	<string name="hint">请输入关键词</string>
 	</resources>

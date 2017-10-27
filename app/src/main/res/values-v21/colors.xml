@@ -2,6 +2,8 @@
 	<resources>
 		<color name="pink">#fff06292</color>
 		<color name="quater_pink">#44f06292</color>
+		<color name="pink_300">#F06292</color>
+		<color name="pink_200">#F48FB1</color>
 		<color name="darken">#50000000</color>
 		<color name="scrim">#99323232</color>
 		<color name="light_grey">#F5F5F5</color>

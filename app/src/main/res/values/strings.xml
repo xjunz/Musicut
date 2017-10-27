@@ -45,4 +45,19 @@
 	<string name="cancel_filter">Cancel Filter</string>
 	<string name="info_song">%1$s songs in total %2$s songs filtered</string>
 	<string name="noti_press_again">Press again within 2 sec to exit.</string>
+	<string name="tiki">TikiTiki</string>
+    <string name="tiki_title">Free Music</string>
+	<string name="search">search</string>
+	<string name="about">About</string>
+	<string name="about_tikitiki">
+		All searched content in this application comes from 「tikitiki.cn」.
+		Tikitiki is a website where you can download a specific 
+		platform\'s  music（uncharged only） without installing its 
+		client terminal.
+	</string>
+	<string name="visit">Visit</string>
+	<string name="vendor_tencent">Tencent</string>
+	<string name="vendor_netease">Netease</string>
+	<string name="vendor_kugou">Kugou</string>
+	<string name="hint">Please input keyword here</string>
 </resources>
