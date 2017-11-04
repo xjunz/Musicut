@@ -9,12 +9,15 @@ import android.util.*;
 import android.view.*;
 import android.view.View.*;
 import android.widget.*;
+import java.io.*;
 import java.util.*;
 import meta.z.musicut.*;
 import meta.z.musicut.bean.*;
 import meta.z.musicut.manager.*;
 import meta.z.musicut.util.*;
 import meta.z.musicut.widget.*;
+import android.net.*;
+import android.media.*;
 
 public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHolder> implements SongManager.GroupDescriptor
 {
@@ -225,7 +228,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 		private TextView tvSongInfo;
 		private CircularImageView civAlbumArt;
 		private View llOption, rlInfo;
-        private Button btnItemSongPlay,btnItemSongCut;
+        private Button btnItemSongPlay,btnItemSongCut,btnItemSongDetail;	
 		private ImageButton ibEdit;
 		//header条目
 		private TextView tvHeader;
@@ -246,6 +249,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 				rlInfo = item.findViewById(R.id.rl_main);
 				btnItemSongCut = (Button) item.findViewById(R.id.item_song_btn_cut);
 				btnItemSongPlay = (Button) item.findViewById(R.id.item_song_btn_play);
+				btnItemSongDetail=(Button) item.findViewById(R.id.item_song_btn_detail);
 				ibEdit = (ImageButton) item.findViewById(R.id.ib_edit);
 
 				btnItemSongCut.setOnClickListener(new OnClickListener(){
@@ -253,7 +257,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 						@Override
 						public void onClick(View p1)
 						{
-
+                         context.startActivity(new Intent(context,MusicutActivity.class));
 						}
 					});
 
@@ -277,6 +281,39 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 							i.putExtra("song", song);
 							context.startActivity(i, bundle);
 
+						}
+					});
+					
+				btnItemSongDetail.setOnClickListener(new OnClickListener(){
+
+						@Override
+						public void onClick(View p1)
+						{
+							final Song song=itemInfoList.get(getAdapterPosition()).song;
+							final File f=new File(song.path);
+							AlertDialog.Builder ab=new AlertDialog.Builder(context);
+							ab.setMessage(String.format(context.getString(R.string.info_detail),
+							song.path,song.title,song.artist,song.album,
+							MusicUtils.formatSongDuration(song.duration),song.duration,
+							MusicUtils.formatDate(song.date_last_modified),
+							MusicUtils.formatFileSize(f.length()),f.length()))
+								.setPositiveButton(android.R.string.copy, new DialogInterface.OnClickListener(){
+
+									@Override
+									public void onClick(DialogInterface p1, int p2)
+									{
+										
+									}
+								}).setNegativeButton(android.R.string.cancel,null)
+								.setTitle(R.string.detail)
+								.setNeutralButton(R.string.view_file, new DialogInterface.OnClickListener(){
+													  @Override
+													  public void onClick(DialogInterface p1, int p2)
+													  {
+														  context.startActivity(new Intent().setDataAndType(Uri.fromFile(f),"audio/*"));
+													  }
+												  })
+							.show();
 						}
 					});
 
@@ -345,6 +382,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MusicViewHol
 
 		public SimultaneousAnimator()
 		{
+
             super();
         }
 

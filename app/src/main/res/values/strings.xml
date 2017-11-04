@@ -18,6 +18,7 @@
 	<string name="delete">delete</string>
 	<string name="cut">cut</string>
 	<string name="play">play</string>
+	<string name="detail">detail</string>
 	<string name="song_not_exists">Oops! This song doesn\'t exist somehow</string>
 	<string name="app_upgraded">App upgraded!</string>
 	<string name="permission_granted">Permission is granted</string>
@@ -60,4 +61,15 @@
 	<string name="vendor_netease">Netease</string>
 	<string name="vendor_kugou">Kugou</string>
 	<string name="hint">Please input keyword here</string>
+	<string name="info_detail">
+		File Path:%1$s
+	  \nSong Name:%2$s
+	  \nArtist:%3$s
+	  \nAlbum:%4$s
+	  \nDuration:%5$s(%6$smillis)
+	  \nLast Modified:%7$s
+	  \nSize:%8$s(%9$sbytes)
+	   </string>
+	<string name="copy">Copy</string>
+	<string name="view_file">View File</string>
 </resources>

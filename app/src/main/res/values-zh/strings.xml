@@ -17,6 +17,7 @@
 	<string name="cut">剪切</string>
 	<string name="delete">删除</string>
 	<string name="play">播放</string>
+	<string name="detail">详情</string>
 	<string name="song_not_exists">抱歉! 这首音乐不存在</string>
 	<string name="app_upgraded">应用已升级</string>
 	<string name="permission_granted">授权成功</string>
@@ -57,4 +58,16 @@
 	<string name="vendor_netease">网易</string>
 	<string name="vendor_kugou">酷狗</string>
 	<string name="hint">请输入关键词</string>
+	<string name="info_detail">
+		路径：%1$s
+		\n曲名：%2$s
+		\n艺术家：%3$s
+		\n专辑：%4$s
+		\n时长：%5$s(%6$s毫秒)
+		\n最后修改于：%7$s
+		\n体积：%8$s(%9$s字节)
+	</string>
+	<string name="copy">复制</string>
+	<string name="view_file">查看文件</string>
+	
 	</resources>

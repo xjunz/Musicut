@@ -23,7 +23,11 @@
 			android:theme="@style/Musicut.Tiki">
            
         </activity>
-		
+		<activity
+            android:name=".SearchActivity"
+			android:theme="@style/Musicut.MusicPlayer">
+
+        </activity>
 		<activity
 			android:label="@string/app_name"
             android:name=".MusicPlayerActivity"
@@ -38,7 +42,7 @@
 			</intent-filter>
 	   </activity>
 	   <activity
-		   android:name=".Oops"
+		   android:name=".MusicutActivity"
 		   android:theme="@style/Musicut.Main"
 		   />
     </application>

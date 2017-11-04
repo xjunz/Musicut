@@ -5,12 +5,143 @@
 	android:layout_height="fill_parent"
 	android:orientation="vertical">
 
-	<meta.z.musicut.widget.CircularImageView
-		android:layout_height="@dimen/d_music_player_album_image"
-		android:layout_width="@dimen/d_music_player_album_image"
-		android:layout_alignParentTop="true"
-		android:layout_marginTop="@dimen/margin_large"
-		android:layout_centerHorizontal="true"/>
+	<LinearLayout
+		android:background="?android:colorBackground"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:gravity="center"
+		android:orientation="vertical"
+		android:elevation="@dimen/z_toolbar"
+		android:id="@+id/activitymusicutLinearLayout1">
+
+		<meta.z.musicut.widget.CircularImageView
+			android:src="@mipmap/ic_music_circle"
+			android:layout_height="@dimen/d_music_player_album_image"
+			android:layout_width="@dimen/d_music_player_album_image"
+			android:layout_alignParentTop="true"
+			android:layout_marginTop="@dimen/margin_large"
+			android:layout_centerHorizontal="true"
+			android:id="@+id/activitymusicutCircularImageView1"/>
+
+		<TextView
+			android:layout_margin="@dimen/margin_normal"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="曲名"
+			android:textSize="@dimen/sp_large"
+			android:layout_below="@id/activitymusicutCircularImageView1"
+			android:layout_centerHorizontal="true"
+			android:id="@+id/activitymusicutTextView1"/>
+
+		<TextView
+			android:layout_marginBottom="@dimen/margin_normal"
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="作者-专辑-时长"
+			android:layout_below="@id/activitymusicutTextView1"
+			android:layout_centerHorizontal="true"/>
+
+	</LinearLayout>
+
+	<ImageButton
+		android:id="@+id/activity_musicut_fab_cut"
+		android:layout_width="@dimen/d_fab_large"
+		android:layout_height="@dimen/d_fab_large"
+		android:layout_marginRight="@dimen/margin_large"
+		android:layout_alignParentRight="true"
+		android:background="@drawable/bck_fab"
+		android:src="@drawable/ic_edit"
+		android:elevation="@dimen/z_fab"
+		android:layout_below="@id/activitymusicutLinearLayout1"
+		android:layout_marginTop="-28dp"/>
+
+	<LinearLayout
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:orientation="horizontal"
+		android:elevation="@dimen/z_fab"
+		android:background="?android:colorAccent"
+		android:layout_alignParentBottom="true"
+		android:gravity="center">
+
+		<ImageButton
+			android:background="?android:selectableItemBackgroundBorderless"
+			android:layout_height="@dimen/d_fab_large"
+			android:layout_width="@dimen/d_fab_large"
+			android:src="@mipmap/ic_pause"/>
+
+	</LinearLayout>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="起始："
+		android:layout_below="@id/activity_musicut_fab_cut"
+		android:id="@+id/activitymusicutTextView2"/>
+
+	<LinearLayout
+		android:background="?android:colorBackground"
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:orientation="vertical"
+		android:layout_below="@id/activitymusicutTextView2"
+		android:elevation="5px"
+		android:id="@+id/activitymusicutLinearLayout2">
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="0:00"/>
+
+		<SeekBar
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"/>
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="0:00"/>
+
+		<SeekBar
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"/>
+
+	</LinearLayout>
+
+	<TextView
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="终止："
+		android:layout_below="@id/activitymusicutLinearLayout2"
+		android:id="@+id/activitymusicutTextView3"/>
+
+	<LinearLayout
+		android:background="?android:colorBackground"
+		android:layout_height="wrap_content"
+		android:layout_width="match_parent"
+		android:orientation="vertical"
+		android:elevation="4px"
+		android:layout_below="@id/activitymusicutTextView3">
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="0:00"/>
+
+		<SeekBar
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"/>
+
+		<TextView
+			android:layout_height="wrap_content"
+			android:layout_width="wrap_content"
+			android:text="0:00"/>
+
+		<SeekBar
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"/>
+
+	</LinearLayout>
 
 </RelativeLayout>
 

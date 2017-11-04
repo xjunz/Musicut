@@ -7,6 +7,9 @@ import android.os.*;
 import java.io.*;
 import java.util.*;
 import meta.z.musicut.bean.*;
+import android.text.*;
+import meta.z.musicut.*;
+import android.icu.text.*;
 
 public class MusicUtils
 {   
@@ -105,7 +108,14 @@ public class MusicUtils
 		return min + ":" + (sec < 10 ?"0" + sec: sec);
 	}
 
+	public static String formatFileSize(long size){
+		return android.text.format.Formatter.formatFileSize(MusicutApplication.context,size);
+	}
 
+	private static final SimpleDateFormat dateFormat=new SimpleDateFormat("yyyy-MM-dd");
+	public static String formatDate(long time){
+		return dateFormat.format(time);
+	}
 	public Bitmap getArtWorkFromMetadata(String path)
 	{
 		MediaMetadataRetriever mmr = new MediaMetadataRetriever();  

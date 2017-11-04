@@ -42,6 +42,7 @@
 			layout="@layout/layout_filter"/>
 	</RelativeLayout>
 
+	
 	<ImageButton
 		style="@style/FAB.Mini"
 		android:id="@+id/fab_filter"
@@ -49,16 +50,19 @@
 		android:layout_below="@id/toolbar"
 		android:layout_marginTop="-4dp"
 		android:layout_alignParentRight="true"
-		android:layout_marginRight="40dp"
+		android:layout_marginRight="48dp"
 		android:scaleType="centerInside"
 		android:src="@mipmap/ic_filter_variant"
 	/>
 
+	  
 	<Toolbar
 		android:id="@id/toolbar"
 		android:title="@string/app_name_en"
 		style="@style/ToolbarStyle"
 		android:background="?android:colorPrimary">
 	</Toolbar>
+	
+	
 </meta.z.musicut.widget.CurtainPanel>
 

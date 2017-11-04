@@ -2,8 +2,7 @@
 <resources>
 	<!--application-->
 	<style name="Musicut" parent="@android:style/Theme.Material.Light.NoActionBar">
-		<item name="android:windowTranslucentNavigation">true</item>
-		<item name="android:statusBarColor">@color/darken</item>
+		<!--<item name="android:statusBarColor">@color/darken</item>-->
 		<item name="android:colorAccent">@color/pink</item>
 		<item name="android:colorControlHighlight">@color/quater_pink</item>
 		<item name="android:colorEdgeEffect">?android:colorControlHighlight</item>
@@ -14,6 +13,8 @@
 	</style>
 
 	<style name="Musicut.Main">
+		<item name="android:colorButtonNormal">?android:attr/colorAccent</item>
+		
 		<item name="android:actionOverflowMenuStyle">@style/ToolbarPopupStyle</item>
 	</style>
 
@@ -25,18 +26,16 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-	    <item name="android:windowBackground">@color/scrim</item>
+	    <item name="android:windowBackground">@android:color/transparent</item>-->
 	</style>
 	
 	<style name="Musicut.Tiki" >
 		<item name="android:actionOverflowMenuStyle">@style/ToolbarPopupStyle</item>
-		<item name="android:colorButtonNormal">?android:attr/colorAccent</item>
-    </style>
+		    </style>
 	
 	
 	<!--toolbar-->
 	<style name="ToolbarStyle" parent="@android:style/Widget.Toolbar">
-		<item name="android:fitsSystemWindows">true</item>
 		<item name="android:titleTextAppearance">@style/ToolbarTitleTextAppearance</item>
 		<item name="android:elevation">@dimen/z_toolbar</item>
 		<item name="android:layout_height">wrap_content</item>

@@ -43,8 +43,7 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 		if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
 			== PackageManager.PERMISSION_DENIED)
 		{   //没有权限则申请
-			ActivityCompat.requestPermissions(this,
-											  new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+			ActivityCompat.requestPermissions(this,										  new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
 											  PERMISSION_REQUEST_CODE);
 		}
 		else
@@ -103,16 +102,9 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 					}
 				}
 			});
-		MediaMetadataRetriever mmr = new MediaMetadataRetriever();  
 		try 
 		{  
-			mmr.setDataSource("/sdcard/netease/cloudmusic/Music/Clive - Reverie.mp3");  
-			//String title = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE); 
-			//String album = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM);  
-			//String artist = mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);  
-			//MusicutToast.makeAndShow(this,  mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)); // 播放时长单位为毫秒  
-			//byte[] pic = mmr.getEmbeddedPicture();  // 图片，可以通过BitmapFactory.decodeByteArray转换为bitmap图片
-		} 
+				} 
 		catch (Exception e) 
 		{  
 			e.printStackTrace();  
@@ -154,8 +146,8 @@ public class MainActivity extends Activity implements CurtainPanel.OnCurtainSlid
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
-		startActivity(new Intent(this,TikiActivity.class));
-		return super.onOptionsItemSelected(item);
+	
+			return super.onOptionsItemSelected(item);
 	}
 
 

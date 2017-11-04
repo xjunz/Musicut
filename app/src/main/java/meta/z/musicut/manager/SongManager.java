@@ -7,6 +7,7 @@ import java.text.*;
 import java.util.*;
 import meta.z.musicut.*;
 import meta.z.musicut.bean.*;
+import meta.z.musicut.util.*;
 
 public class SongManager
 {
@@ -151,8 +152,7 @@ public class SongManager
 			case SORT_BY_ALBUM:
 				return song.album;
 			case SORT_BY_DATE:
-				String ctime = new SimpleDateFormat("yyyy-MM-dd").format(new Date(new File(song.path).lastModified()));
-				return ctime;
+				return MusicUtils.formatDate(song.date_last_modified);
 		}
 		return "";
 	}

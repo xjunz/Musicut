@@ -16,6 +16,7 @@ public class Song implements Parcelable
 	public long album_id;
 	public long song_id;
 	public long duration;
+	public String formated_duration;
 	public int  postion;
 	
 	public Song(){}

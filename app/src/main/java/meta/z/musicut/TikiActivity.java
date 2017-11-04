@@ -9,16 +9,15 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 import org.json.*;
-import android.media.*;
 
 public class TikiActivity extends Activity 
 {
 	private EditText etKeyWord;
 	private RadioGroup rgVendor;
-	
+
 	private final String tiki_base_url="https://www.tikitiki.cn";
 	ListView lv;
-	
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -80,6 +79,7 @@ public class TikiActivity extends Activity
 				try
 				{
 					new TikiTask().execute(String.format(tiki_result_json_url, URLEncoder.encode(etKeyWord.getText().toString(), "UTF-8"), 1, getVendorType()));
+					
 				}
 				catch (UnsupportedEncodingException e)
 				{}
@@ -119,12 +119,9 @@ public class TikiActivity extends Activity
 					outStream.write(data, 0, len);  
 				}  
 				inStream.close();  
-			}
-			catch (Exception e)
-			{}  
-			JSONTokener parser=new JSONTokener(new String(outStream.toByteArray()));
-			try
-			{
+
+				JSONTokener parser=new JSONTokener(new String(outStream.toByteArray()));
+
 				jobj = (JSONObject) parser.nextValue();
 				jarray = jobj.getJSONArray("data");
 			    for (int i=0;i < jarray.length();i++)
@@ -133,7 +130,7 @@ public class TikiActivity extends Activity
 					songInfoList.add(si);
 				}
 			}
-			catch (JSONException e)
+			catch (Exception e)
 			{
 
 			}

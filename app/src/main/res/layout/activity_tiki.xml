@@ -9,7 +9,7 @@
 		android:elevation="5px"
 		style="@style/ToolbarStyle"
 		android:background="?android:colorPrimary"
-		/>
+	/>
 
 	<TextView
 		android:layout_below="@id/tiki_toolbar"
@@ -26,7 +26,6 @@
 	<View
 		android:layout_marginLeft="@dimen/margin_large"
 		android:layout_marginRight="@dimen/margin_large"
-		
 		android:background="?android:attr/dividerVertical"
 		android:layout_height="1px"
 		android:layout_width="match_parent"
@@ -68,7 +67,6 @@
 	<View
 		android:layout_alignLeft="@id/v_tiki_1"
 		android:layout_alignRight="@id/v_tiki_1"
-		
 		android:background="?android:attr/dividerVertical"
 		android:layout_height="1px"
 		android:layout_width="match_parent"
